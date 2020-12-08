@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Nav from './pc/Nav';
+import Profile from './pc/Profile';
 import Admin from './pc/Admin';
 import Home from  './pc/Home';
 
@@ -22,6 +23,9 @@ const Routes = () => {
         <Nav />
 
         <Switch>
+          <Route path="/profile">
+            <Profile />
+          </Route>
           <Route path="/admin">
             <Admin />
           </Route>
