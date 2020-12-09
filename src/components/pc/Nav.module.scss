@@ -1,8 +1,10 @@
+@import './common/layout.scss';
+
 .header {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 80px;
+  height: $pc-header-height;
   z-index: 1;
 }
 
@@ -19,11 +21,12 @@
 
 .ul {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 16px;
+  right: 32px;
   display: flex;
+  font-size: 14px;
 }
 
 .li {
-  margin-left: 16px;
+  margin-left: 24px;
 }

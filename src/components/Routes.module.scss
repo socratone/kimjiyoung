@@ -1,4 +1,6 @@
-.mainWrap {
+@import './pc/common/layout.scss';
+
+.screen {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -7,13 +9,17 @@
   overflow: auto;
 }
 
-.mainBumper {
+.screenBumper {
   flex-shrink: 0;
-  height: 80px;
+  height: $pc-header-height;
+}
+
+.mainWrap {
+  flex-grow: 1;
+  display: flex;
+  background-color: whitesmoke;
 }
 
 .main {
-  flex-grow: 1;
   padding: 8px;
-  background-color: whitesmoke;
 }
