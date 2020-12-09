@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Nav from './pc/Nav';
+import BarsNav from './pc/BarsNav';
 import SideNav from './pc/SideNav';
 import Profile from './pc/pages/Profile';
 import Admin from './pc/pages/Admin';
@@ -19,6 +20,8 @@ import { crossItems, jesusItems } from '../fakeData';
 
 const Routes = () => {
   const page = useSelector(state => state.ui.page);
+  const isBars = useSelector(state => state.ui.isBars);
+  
   const isMobile = false;
 
   if (isMobile) {
@@ -32,6 +35,7 @@ const Routes = () => {
     return ( 
       <Router>
         <Nav />
+        {isBars && <BarsNav />}
 
         <div className={styles.screen} style={{backgroundImage}}>
           <div className={styles.screenBumper}></div>

@@ -6,6 +6,9 @@
   width: 100vw;
   height: $pc-header-height;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .title {
@@ -17,6 +20,10 @@
   height: 100%;
   font-size: 32px;
   font-weight: 200;
+}
+
+.bars {
+  display: none;
 }
 
 .ul {
@@ -37,7 +44,14 @@
   }
 
   .title {
-    font-size: 20px;
+    font-size: 22px;
+  }
+
+  .bars {
+    display: block;
+    margin-right: 32px;
+    z-index: 1;
+    cursor: pointer;
   }
 
   .ul {

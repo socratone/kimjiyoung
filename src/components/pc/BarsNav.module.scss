@@ -1,0 +1,29 @@
+.navWrap {
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.452);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+}
+
+.nav {
+  background-color: white;
+}
+
+.xButton {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  cursor: pointer;
+}
+
+.ul {
+  padding: 24px 32px;
+  font-size: 14px;
+}
+
+.li {
+  margin-bottom: 8px;
+}
