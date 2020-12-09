@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Nav from './pc/Nav';
@@ -17,7 +16,7 @@ import ItemDetail from './pc/pages/ItemDetail';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
-import { crossItems, jesusItems } from '../fakeData';
+import { sacredThings } from '../fakeData';
 
 const Routes = () => {
   const page = useSelector(state => state.ui.page);
@@ -52,10 +51,10 @@ const Routes = () => {
                   <Admin />
                 </Route>
                 <Route path="/cross">
-                  <Goods items={crossItems} title="Cross" />
+                  <Goods items={sacredThings.cross.items} title="Cross" />
                 </Route>
                 <Route path="/jesus">
-                  <Goods items={jesusItems} title="Jesus" />
+                  <Goods items={sacredThings.jesus.items} title="Jesus" />
                 </Route>
                 <Route path="/item">
                   <ItemDetail />

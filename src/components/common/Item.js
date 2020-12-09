@@ -4,13 +4,13 @@ import { useHistory } from "react-router-dom";
 import { setCurrentItem } from '../../store/currentItem';
 import styles from './Item.module.scss';
 
-const Item = ({ id, title, description, price, image }) => {
+const Item = ({ id, title, description, price, image, category }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const showItemDetail = () => {
-    dispatch(setCurrentItem({ id, title, description, price, image }));
-    history.push(`/item/${id}`);
+    dispatch(setCurrentItem({ id, title, description, price, image, category }));
+    history.push(`/item/${category}/${id}`);
   };
   
   return ( 
