@@ -4,7 +4,7 @@ import { activateAdmin } from '../../../store/isAdmin';
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const isAdmin = useSelector(state => state.ui.isAdmin);
+  const isAdmin = useSelector(state => state.entities.isAdmin);
 
   const handleClick = () => {
     dispatch(activateAdmin());
