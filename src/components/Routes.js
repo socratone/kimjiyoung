@@ -37,6 +37,7 @@ const Routes = () => {
           <div className={styles.screenBumper}></div>
           <div className={styles.mainWrap}>
             <SideNav />
+            <div className={styles.mainBumper} />
             <main className={styles.main}>
               <Switch>
                 <Route path="/profile">
