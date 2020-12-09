@@ -11,7 +11,7 @@ const Item = ({ title, description, price, image }) => {
       </div>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
-        <p>{price}</p>
+        <p>{price && price.toLocaleString() + '원'}</p>
       </div>
     </article> 
   );
