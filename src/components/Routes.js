@@ -46,7 +46,7 @@ const Routes = () => {
                   <Admin />
                 </Route>
                 <Route path="/cross">
-                  <Goods items={crossItems} />
+                  <Goods items={crossItems} title="Cross" />
                 </Route>
                 <Route path="/">
                   <Home />
