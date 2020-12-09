@@ -30,3 +30,17 @@
 .li {
   margin-left: 24px;
 }
+
+@media (max-width: 650px) {
+  .header {
+    height: $mb-header-height;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .ul {
+    display: none;
+  }
+}

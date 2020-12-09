@@ -25,9 +25,8 @@
   font-size: 14px;
 }
 
-// .title {
-// }
-
-// .price {
-//   font-size: 14px;
-// }
+@media (max-width: 650px) {
+  .item {
+    margin-bottom: 24px;
+  }
+}

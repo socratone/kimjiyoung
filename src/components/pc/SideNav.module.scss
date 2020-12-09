@@ -13,3 +13,9 @@
 .li {
   margin-bottom: 8px;
 }
+
+@media (max-width: 650px) {
+  .nav {
+    display: none;
+  }
+}

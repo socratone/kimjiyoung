@@ -26,3 +26,21 @@
 .main {
   padding: 8px 32px 0 0;
 }
+
+@media (max-width: 650px) {
+  .screenBumper {
+    height: $mb-header-height;
+  }
+
+  .mainWrap {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainBumper {
+    display: none;
+  }
+  
+  .main {
+    padding: 24px 32px 0 32px;
+  }
+}
