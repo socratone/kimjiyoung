@@ -5,14 +5,17 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Nav from './pc/Nav';
 import SideNav from './pc/SideNav';
 import Profile from './pc/Profile';
 import Admin from './pc/Admin';
 import Home from  './pc/Home';
+import imageUrl from './pc/common/backgroundImage';
 import styles from './Routes.module.scss';
 
 const Routes = () => {
+  const page = useSelector(state => state.ui.page);
   const isMobile = false;
 
   if (isMobile) {
@@ -20,11 +23,14 @@ const Routes = () => {
       <div>mobile 화면은 아직 지원하지 않습니다.</div>
     );
   } else {
+    let backgroundImage;
+    if (page === 'home') backgroundImage = `url('${imageUrl}')`;
+
     return ( 
       <Router>
         <Nav />
 
-        <div className={styles.screen}>
+        <div className={styles.screen} style={{backgroundImage}}>
           <div className={styles.screenBumper}></div>
           <div className={styles.mainWrap}>
             <SideNav />
