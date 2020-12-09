@@ -1,9 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { setCurrentItem } from '../../store/currentItem';
 import styles from './Item.module.scss';
 
-const Item = ({ title, description, price, image }) => {
+const Item = ({ id, title, description, price, image }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const showItemDetail = () => {
+    dispatch(setCurrentItem({ id, title, description, price, image }));
+    history.push(`/item/${id}`);
+  };
+  
   return ( 
-    <article className={styles.item}>
+    <article className={styles.item} onClick={() => showItemDetail()}>
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 

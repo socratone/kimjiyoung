@@ -13,6 +13,7 @@ import Profile from './pc/pages/Profile';
 import Admin from './pc/pages/Admin';
 import Home from  './pc/pages/Home';
 import Goods from './pc/pages/Goods';
+import ItemDetail from './pc/pages/ItemDetail';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
@@ -55,6 +56,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/jesus">
                   <Goods items={jesusItems} title="Jesus" />
+                </Route>
+                <Route path="/item">
+                  <ItemDetail />
                 </Route>
                 <Route path="/">
                   <Home />
