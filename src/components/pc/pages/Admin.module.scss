@@ -1,0 +1,13 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+.text {
+  font-size: 14px;
+}
