@@ -1,16 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { setCurrentItem } from '../../store/currentItem';
 import styles from './Item.module.scss';
 
 const Item = ({ id, title, description, price, image, category }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const showItemDetail = () => {
-    dispatch(setCurrentItem({ id, title, description, price, image, category }));
-    history.push(`/item/${category}/${id}`);
+    history.push({
+      pathname: `/item/${category}/${id}`,
+      state: { id, title, description, price, image, category }
+    });
   };
   
   return ( 
