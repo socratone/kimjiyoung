@@ -7,6 +7,9 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
+  background-image: url('https://picsum.photos/id/465/800');
+  background-size: cover;
+  background-position: center center;
 }
 
 .screenBumper {
@@ -17,7 +20,7 @@
 .mainWrap {
   flex-grow: 1;
   display: flex;
-  background-color: whitesmoke;
+  // background-color: whitesmoke;
 }
 
 .main {
