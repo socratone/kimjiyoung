@@ -11,8 +11,11 @@ import SideNav from './pc/SideNav';
 import Profile from './pc/pages/Profile';
 import Admin from './pc/pages/Admin';
 import Home from  './pc/pages/Home';
+import Goods from './pc/pages/Goods';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
+
+import { crossItems } from '../fakeData';
 
 const Routes = () => {
   const page = useSelector(state => state.ui.page);
@@ -41,6 +44,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/admin">
                   <Admin />
+                </Route>
+                <Route path="/cross">
+                  <Goods items={crossItems} />
                 </Route>
                 <Route path="/">
                   <Home />

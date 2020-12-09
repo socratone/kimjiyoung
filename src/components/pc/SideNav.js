@@ -7,7 +7,7 @@ const SideNav = () => {
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         <li className={styles.li}>
-          <Link to="/">Crux</Link>
+          <Link to="/cross">Cross</Link>
         </li>
       </ul>
     </nav>
