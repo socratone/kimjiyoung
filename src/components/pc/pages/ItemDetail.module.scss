@@ -1,6 +1,9 @@
 @import '../../../config/layout.scss';
 
 .item {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  gap: $items-gap;
   margin-bottom: 72px;
 }
 
