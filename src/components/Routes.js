@@ -11,7 +11,7 @@ import SideNav from './pc/SideNav';
 import Profile from './pc/pages/Profile';
 import Admin from './pc/pages/Admin';
 import Home from  './pc/pages/Home';
-import imageUrl from './pc/common/backgroundImage';
+import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
 const Routes = () => {
