@@ -8,9 +8,9 @@ import {
 import { useSelector } from 'react-redux';
 import Nav from './pc/Nav';
 import SideNav from './pc/SideNav';
-import Profile from './pc/Profile';
-import Admin from './pc/Admin';
-import Home from  './pc/Home';
+import Profile from './pc/pages/Profile';
+import Admin from './pc/pages/Admin';
+import Home from  './pc/pages/Home';
 import imageUrl from './pc/common/backgroundImage';
 import styles from './Routes.module.scss';
 

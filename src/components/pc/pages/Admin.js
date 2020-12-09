@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { activateAdmin } from '../../store/isAdmin';
+import { activateAdmin } from '../../../store/isAdmin';
 
 const Admin = () => {
   const dispatch = useDispatch();
