@@ -1,5 +1,12 @@
+@import '../../../config/layout.scss';
+
+.title {
+  font-size: 14px;
+  margin-bottom: $items-gap;
+}
+
 .section {
   display: grid;
-  gap: 16px;
+  gap: $items-gap;
   grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
 }

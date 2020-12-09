@@ -1,5 +1,7 @@
+@import '../../config/layout.scss';
+
 .item {
-  // background-color: whitesmoke;
+  margin-bottom: 72px;
 }
 
 .imageWrap {
@@ -17,7 +19,7 @@
 }
 
 .text {
-  margin-top: 16px;
+  margin-top: $items-gap;
   display: flex;
   justify-content: space-between;
   font-size: 14px;
