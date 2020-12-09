@@ -43,4 +43,28 @@ const crossItems = [
   },
 ];
 
-export { crossItems };
+const jesusItems = [
+  {
+    id: 1,
+    title: '예수님 1',
+    description: '예수님 상입니다.',
+    price: 10000,
+    image: 'https://picsum.photos/306',
+  },
+  {
+    id: 2,
+    title: '예수님 2',
+    description: '예수님 상입니다.',
+    price: 10000,
+    image: 'https://picsum.photos/307',
+  },
+  {
+    id: 3,
+    title: '예수님 3',
+    description: '예수님 상입니다.',
+    price: 10000,
+    image: 'https://picsum.photos/308',
+  },
+];
+
+export { crossItems, jesusItems };

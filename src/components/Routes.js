@@ -15,7 +15,7 @@ import Goods from './pc/pages/Goods';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
-import { crossItems } from '../fakeData';
+import { crossItems, jesusItems } from '../fakeData';
 
 const Routes = () => {
   const page = useSelector(state => state.ui.page);
@@ -47,6 +47,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/cross">
                   <Goods items={crossItems} title="Cross" />
+                </Route>
+                <Route path="/jesus">
+                  <Goods items={jesusItems} title="Jesus" />
                 </Route>
                 <Route path="/">
                   <Home />
