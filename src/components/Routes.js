@@ -5,14 +5,14 @@ import {
   Route
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import Nav from './pc/Nav';
-import BarsNav from './pc/BarsNav';
-import SideNav from './pc/SideNav';
-import Profile from './pc/pages/Profile';
-import Admin from './pc/pages/Admin';
-import Home from  './pc/pages/Home';
-import Goods from './pc/pages/Goods';
-import ItemDetail from './pc/pages/ItemDetail';
+import Nav from './Nav';
+import BarsNav from './BarsNav';
+import SideNav from './SideNav';
+import Profile from './pages/Profile';
+import Admin from './pages/Admin';
+import Home from  './pages/Home';
+import Goods from './pages/Goods';
+import ItemDetail from './pages/ItemDetail';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 

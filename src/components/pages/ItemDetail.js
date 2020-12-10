@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ItemDetail.module.scss';
 
-import { sacredThings } from '../../../fakeData';
+import { sacredThings } from '../../fakeData';
 
 const ItemDetail = () => {
   const { category, id } = useParams();

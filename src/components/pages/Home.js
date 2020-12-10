@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPage } from '../../../store/page';
+import { setPage } from '../../store/page';
 
 const Home = () => {
   const dispatch = useDispatch();

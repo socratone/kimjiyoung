@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Item from '../../common/Item';
+import Item from '../common/Item';
 import styles from './Goods.module.scss';
 
-import { sacredThings } from '../../../fakeData';
+import { sacredThings } from '../../fakeData';
 
 const Goods = () => {
   const { category } = useParams();

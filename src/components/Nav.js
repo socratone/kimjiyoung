@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateBars } from '../../store/isBars';
+import { activateBars } from '../store/isBars';
 import styles from './Nav.module.scss';
 
 const Nav = () => {

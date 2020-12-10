@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { activateAdmin, disableAdmin } from '../../../store/isAdmin';
-import Button from '../../common/Button';
-import TextInput from '../../common/TextInput';
+import { activateAdmin, disableAdmin } from '../../store/isAdmin';
+import Button from '../common/Button';
+import TextInput from '../common/TextInput';
 import styles from './Admin.module.scss';
 
 const Admin = () => {

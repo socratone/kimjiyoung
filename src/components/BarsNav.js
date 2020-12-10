@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { disableBars } from '../../store/isBars';
+import { disableBars } from '../store/isBars';
 import styles from './BarsNav.module.scss';
 
 const BarsNav = () => {
