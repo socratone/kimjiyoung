@@ -17,25 +17,22 @@ const ItemDetail = () => {
   const { title, description, price, image } = getCurrentItem();
 
   return ( 
-    <>
-      <section className={styles.item}>
-
-        <div className={styles.imageWrap}>
-          <div
-            className={styles.image} 
-            style={{backgroundImage: `url('${image}')`}}/>
+    <section className={styles.item}>
+      <div className={styles.imageWrap}>
+        <div
+          className={styles.image} 
+          style={{backgroundImage: `url('${image}')`}}
+        />
+      </div>
+      <div>
+        <p className={styles.title}>{category}</p>
+        <div className={styles.text}>
+          <p className={styles.title}>{title}</p>
+          <p>{price && price.toLocaleString() + '원'}</p>
         </div>
-
-        <div>
-          <p className={styles.title}>{category}</p>
-          <div className={styles.text}>
-            <p className={styles.title}>{title}</p>
-            <p>{price && price.toLocaleString() + '원'}</p>
-          </div>
-          <p>{description}</p>
-        </div>
-      </section>
-    </>
+        <p>{description}</p>
+      </div>
+    </section>
   );
 }
  
