@@ -5,6 +5,7 @@
   height: 40px;
   border: gainsboro solid 1px;
   cursor: pointer;
+  outline: none;
   font-size: 14px;
 
   &:hover {
@@ -15,7 +16,7 @@
     transform: scale(0.96);
   }
 
-  a {
+  p {
     display: flex;
     height: 100%;
     justify-content: center;

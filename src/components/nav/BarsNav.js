@@ -15,9 +15,9 @@ const BarsNav = () => {
     <div className={styles.navWrap}>
       <div className={styles.nonNav} onClick={() => removeNav()}/>
       <nav className={styles.nav}>
-        <a className={styles.xButton} onClick={() => removeNav()}>
+        <button className={styles.xButton} onClick={() => removeNav()}>
           <i className="fa fa-times" aria-hidden="true"></i>
-        </a>
+        </button>
         <ul className={styles.ul}>
           <li className={styles.li}>
             <Link to="/profile" onClick={() => removeNav()}>Profile</Link>

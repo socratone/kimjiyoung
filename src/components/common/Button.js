@@ -4,13 +4,13 @@ import styles from './Button.module.scss';
 const Button = props => {
   const { width, onClick } = props;
   return ( 
-    <span 
+    <button 
       className={styles.button} 
       onClick={onClick} 
       style={{ width }}
     >
-      <a>{props.children}</a>
-    </span>
+      <p>{props.children}</p>
+    </button>
   );
 }
  

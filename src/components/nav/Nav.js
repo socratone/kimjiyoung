@@ -16,9 +16,9 @@ const Nav = () => {
       <div className={styles.title}>
         <Link to="/">Kim ji young</Link>
       </div>
-      <a className={styles.bars} onClick={barsClick}>
+      <button className={styles.bars} onClick={barsClick}>
         <i className="fa fa-bars" aria-hidden="true"></i>
-      </a>
+      </button>
       <ul className={styles.ul}>
         <li className={styles.li}>
           <Link to="/profile">Profile</Link>
