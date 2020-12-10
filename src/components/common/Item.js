@@ -10,11 +10,12 @@ const Item = ({ id, title, description, price, image, category }) => {
   };
   
   return ( 
-    <article className={styles.item} onClick={() => showItemDetail()}>
+    <article className={styles.item}>
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
           style={{backgroundImage: `url('${image}')`}}
+          onClick={() => showItemDetail()}
         />
       </div>
       <div className={styles.text}>
