@@ -1,4 +1,4 @@
-import { url } from '../config/env';
+const url = process.env.REACT_APP_API_URL;
 
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
