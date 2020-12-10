@@ -4,6 +4,7 @@ import { activateAdmin, disableAdmin } from '../../store/isAdmin';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
 import postSignin from '../../api/postSignin';
+import getUser from '../../helper/getUser';
 import styles from './Admin.module.scss';
 
 const Admin = () => {
@@ -28,7 +29,8 @@ const Admin = () => {
   const handleLogin = async () => {
     if(!validateInput(email, password)) return;
     const { status, ok, message } = await postSignin(email, password);
-    if (ok) dispatch(activateAdmin());
+    const user = getUser();
+    if (ok && user.account === 'admin') dispatch(activateAdmin());
     setInfo(message);
     setEmail('');
     setPassword('');
