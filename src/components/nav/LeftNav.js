@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './SideNav.module.scss';
+import styles from './LeftNav.module.scss';
 
-const SideNav = () => {
+const LeftNav = () => {
   return ( 
     <nav className={styles.nav}>
       <ul className={styles.ul}>
@@ -17,4 +17,4 @@ const SideNav = () => {
   );
 }
  
-export default SideNav;
+export default LeftNav;

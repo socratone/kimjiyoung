@@ -7,7 +7,7 @@ import {
 import { useSelector } from 'react-redux';
 import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
-import SideNav from './nav/SideNav';
+import LeftNav from './nav/LeftNav';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Home from  './pages/Home';
@@ -31,7 +31,7 @@ const Routes = () => {
       <div className={styles.screen} style={{backgroundImage}}>
         <div className={styles.screenBumper}></div>
         <div className={styles.mainWrap}>
-          <SideNav />
+          <LeftNav />
           <div className={styles.mainBumper} />
           <main className={styles.main}>
             <Switch>
