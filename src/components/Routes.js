@@ -5,9 +5,9 @@ import {
   Route
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import Nav from './Nav';
-import BarsNav from './BarsNav';
-import SideNav from './SideNav';
+import Nav from './nav/Nav';
+import BarsNav from './nav/BarsNav';
+import SideNav from './nav/SideNav';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Home from  './pages/Home';
