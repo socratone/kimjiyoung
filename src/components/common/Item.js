@@ -14,7 +14,8 @@ const Item = ({ id, title, description, price, image, category }) => {
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
-          style={{backgroundImage: `url('${image}')`}}/>
+          style={{backgroundImage: `url('${image}')`}}
+        />
       </div>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>

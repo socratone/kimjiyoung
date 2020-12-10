@@ -8,6 +8,7 @@
   position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
   width: 100%;
   padding-bottom: 120%; /* 16:9 비율 */
+  overflow: hidden;
 }
 
 .image {
@@ -17,6 +18,11 @@
   background-size: cover;
   background-position: center center;
   cursor: pointer;
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: scale(1.04);
+  }
 }
 
 .text {
