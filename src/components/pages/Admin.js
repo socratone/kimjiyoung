@@ -38,6 +38,7 @@ const Admin = () => {
 
   const handleLogout = () => {
     setInfo('Admin 계정으로 로그인 해주세요.');
+    localStorage.setItem('token', '');
     dispatch(disableAdmin());
   };
   
