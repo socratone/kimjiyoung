@@ -1,6 +1,8 @@
+@import '../../config/layout.scss';
+
 .nav {
   position: fixed;
-  width: 200px;
+  width: $left-nav-width;
   padding-top: 8px;
   // background-color: white;
 }

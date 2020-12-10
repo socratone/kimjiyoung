@@ -19,7 +19,7 @@
 .mainWrap {
   flex-grow: 1;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: $left-nav-width 1fr;
   // background-color: whitesmoke;
 }
 
