@@ -20,50 +20,43 @@ const Routes = () => {
   const page = useSelector(state => state.ui.page);
   const isBars = useSelector(state => state.ui.isBars);
   
-  const isMobile = false;
+  let backgroundImage;
+  if (page === 'home') backgroundImage = `url('${imageUrl}')`;
 
-  if (isMobile) {
-    return (
-      <div>mobile 화면은 아직 지원하지 않습니다.</div>
-    );
-  } else {
-    let backgroundImage;
-    if (page === 'home') backgroundImage = `url('${imageUrl}')`;
+  return ( 
+    <Router>
+      <Nav />
+      {isBars && <BarsNav />}
 
-    return ( 
-      <Router>
-        <Nav />
-        {isBars && <BarsNav />}
-
-        <div className={styles.screen} style={{backgroundImage}}>
-          <div className={styles.screenBumper}></div>
-          <div className={styles.mainWrap}>
-            <SideNav />
-            <div className={styles.mainBumper} />
-            <main className={styles.main}>
-              <Switch>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/admin">
-                  <Admin />
-                </Route>
-                <Route path="/item/:category/:id">
-                  <ItemDetail />
-                </Route>
-                <Route path="/item/:category">
-                  <Goods />
-                </Route>
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </main>
-          </div> 
-        </div>
-      </Router>
-    );
-  }
+      <div className={styles.screen} style={{backgroundImage}}>
+        <div className={styles.screenBumper}></div>
+        <div className={styles.mainWrap}>
+          <SideNav />
+          <div className={styles.mainBumper} />
+          <main className={styles.main}>
+            <Switch>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/admin">
+                <Admin />
+              </Route>
+              <Route path="/item/:category/:id">
+                <ItemDetail />
+              </Route>
+              <Route path="/item/:category">
+                <Goods />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </main>
+        </div> 
+      </div>
+    </Router>
+  );
+  
 }
  
 export default Routes;
