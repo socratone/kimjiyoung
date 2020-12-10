@@ -1,33 +1,30 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './ItemDetail.module.scss';
 
-const ItemDetail = () => {
-  const location = useLocation();
+import { sacredThings } from '../../../fakeData';
 
-  let currentItem = location.state;
-  if (!currentItem) {
-    // fakeData
-    currentItem = {
-      id: 3,
-      title: '바로 접근했을 때',
-      description: '나타나게 됩니다.',
-      price: 10000,
-      image: 'https://picsum.photos/299',
-      category: 'null'
-    }
+const ItemDetail = () => {
+  const { category, id } = useParams();
+
+  const getCurrentItem = () => {
+    const [ item ] = sacredThings[category].items.filter(item => {
+      return item.id.toString() === id;
+    });
+    return item;
   }
-  const { title, description, price, image, category } = currentItem;
+
+  const { title, description, price, image } = getCurrentItem();
 
   return ( 
     <>
       <section className={styles.item}>
 
-          <div className={styles.imageWrap}>
-            <div
-              className={styles.image} 
-              style={{backgroundImage: `url('${image}')`}}/>
-          </div>
+        <div className={styles.imageWrap}>
+          <div
+            className={styles.image} 
+            style={{backgroundImage: `url('${image}')`}}/>
+        </div>
 
         <div>
           <p className={styles.title}>{category}</p>

@@ -7,10 +7,10 @@ const SideNav = () => {
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         <li className={styles.li}>
-          <Link to="/cross">십자가</Link>
+          <Link to="/item/cross">십자가</Link>
         </li>
         <li className={styles.li}>
-          <Link to="/jesus">예수님</Link>
+          <Link to="/item/jesus">예수님</Link>
         </li>
       </ul>
     </nav>

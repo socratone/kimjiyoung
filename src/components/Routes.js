@@ -16,8 +16,6 @@ import ItemDetail from './pc/pages/ItemDetail';
 import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
-import { sacredThings } from '../fakeData';
-
 const Routes = () => {
   const page = useSelector(state => state.ui.page);
   const isBars = useSelector(state => state.ui.isBars);
@@ -50,14 +48,11 @@ const Routes = () => {
                 <Route path="/admin">
                   <Admin />
                 </Route>
-                <Route path="/cross">
-                  <Goods items={sacredThings.cross.items} title="Cross" />
-                </Route>
-                <Route path="/jesus">
-                  <Goods items={sacredThings.jesus.items} title="Jesus" />
-                </Route>
-                <Route path="/item">
+                <Route path="/item/:category/:id">
                   <ItemDetail />
+                </Route>
+                <Route path="/item/:category">
+                  <Goods />
                 </Route>
                 <Route path="/">
                   <Home />

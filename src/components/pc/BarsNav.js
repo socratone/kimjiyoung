@@ -26,10 +26,10 @@ const BarsNav = () => {
             <Link to="/admin" onClick={() => removeNav()}>Admin</Link>
           </li>
           <li className={styles.li}>
-            <Link to="/cross" onClick={() => removeNav()}>십자가</Link>
+            <Link to="/item/cross" onClick={() => removeNav()}>십자가</Link>
           </li>
           <li className={styles.li}>
-            <Link to="/jesus" onClick={() => removeNav()}>예수님</Link>
+            <Link to="/item/jesus" onClick={() => removeNav()}>예수님</Link>
           </li>
         </ul>
       </nav> 

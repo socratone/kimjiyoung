@@ -1,11 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Item from '../../common/Item';
 import styles from './Goods.module.scss';
 
-const Goods = ({ items, title }) => {
+import { sacredThings } from '../../../fakeData';
+
+const Goods = () => {
+  const { category } = useParams();
+  const { items } = sacredThings[category];
+
   return ( 
     <>
-      <p className={styles.title}>{title}</p>
+      <p className={styles.title}>{category}</p>
       <section className={styles.section}>
         {items.map(item => <Item {...item} key={item.id} />)}
       </section>

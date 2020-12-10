@@ -6,10 +6,7 @@ const Item = ({ id, title, description, price, image, category }) => {
   const history = useHistory();
 
   const showItemDetail = () => {
-    history.push({
-      pathname: `/item/${category}/${id}`,
-      state: { id, title, description, price, image, category }
-    });
+    history.push(`/item/${category}/${id}`);
   };
   
   return ( 
