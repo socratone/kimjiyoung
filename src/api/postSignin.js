@@ -3,7 +3,7 @@ import { url } from '../config/env';
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
 
-const postSignin = async ({ email, password }) => {
+const postSignin = async (email, password) => {
   try {
     const raw = JSON.stringify({ email, password });
     const res = await fetch(url + '/api/signin', {

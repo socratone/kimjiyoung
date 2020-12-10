@@ -14,8 +14,20 @@ const Admin = () => {
   const dispatch = useDispatch();
   const isAdmin = useSelector(state => state.entities.isAdmin);
 
+  const validateInput = (email, password) => {
+    if (email.length < 1) {
+      setInfo('아이디를 입력해주세요.');
+      return false;
+    } else if (password.length < 1) {
+      setInfo('비밀번호를 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
   const handleLogin = async () => {
-    const { status, ok, message } = await postSignin({ email, password });
+    if(!validateInput(email, password)) return;
+    const { status, ok, message } = await postSignin(email, password);
     if (ok) dispatch(activateAdmin());
     setInfo(message);
     setEmail('');
