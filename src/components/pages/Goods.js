@@ -9,9 +9,11 @@ const Goods = () => {
   const { category } = useParams();
   const { items } = sacredThings[category];
 
+  const capitalizeFirstLetter = text => text[0].toUpperCase() + text.substring(1);
+
   return ( 
     <>
-      <p className={styles.title}>{category}</p>
+      <p className={styles.title}>{capitalizeFirstLetter(category)}</p>
       <section className={styles.section}>
         {items.map(item => <Item {...item} key={item.id} />)}
       </section>
