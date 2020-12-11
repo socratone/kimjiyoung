@@ -14,22 +14,17 @@ import Signin from './pages/Signin';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
 import ItemDetail from './pages/ItemDetail';
-import imageUrl from '../config/backgroundImage';
 import styles from './Routes.module.scss';
 
 const Routes = () => {
-  const page = useSelector(state => state.ui.page);
   const isBars = useSelector(state => state.ui.isBars);
-  
-  let backgroundImage;
-  if (page === 'home') backgroundImage = `url('${imageUrl}')`;
 
   return ( 
     <Router>
       <Nav />
       {isBars && <BarsNav />}
 
-      <div className={styles.screen} style={{backgroundImage}}>
+      <div className={styles.screen}>
         <div className={styles.screenBumper}></div>
         <div className={styles.mainWrap}>
           <LeftNav />
