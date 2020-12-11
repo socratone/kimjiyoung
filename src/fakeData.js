@@ -7,7 +7,8 @@ const sacredThings = {
         description: '순백의 새하얀 십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/300',
-        category: 'cross'
+        category: 'cross',
+        index: 1
       },
       {
         id: 2,
@@ -15,7 +16,8 @@ const sacredThings = {
         description: '그냥 십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/301',
-        category: 'cross'
+        category: 'cross',
+        index: 2
       },
       {
         id: 3,
@@ -23,7 +25,8 @@ const sacredThings = {
         description: '십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/302',
-        category: 'cross'
+        category: 'cross',
+        index: 3
       },
       {
         id: 4,
@@ -31,7 +34,8 @@ const sacredThings = {
         description: '십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/303',
-        category: 'cross'
+        category: 'cross',
+        index: 4
       },
       {
         id: 5,
@@ -39,7 +43,8 @@ const sacredThings = {
         description: '십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/304',
-        category: 'cross'
+        category: 'cross',
+        index: 5
       },
       {
         id: 6,
@@ -47,7 +52,8 @@ const sacredThings = {
         description: '십자가입니다.',
         price: 10000,
         image: 'https://picsum.photos/305',
-        category: 'cross'
+        category: 'cross',
+        index: 6
       },
     ]
   },
@@ -59,7 +65,8 @@ const sacredThings = {
         description: '예수님 상입니다.',
         price: 10000,
         image: 'https://picsum.photos/306',
-        category: 'jesus'
+        category: 'jesus',
+        index: 1
       },
       {
         id: 2,
@@ -67,7 +74,8 @@ const sacredThings = {
         description: '예수님 상입니다.',
         price: 10000,
         image: 'https://picsum.photos/307',
-        category: 'jesus'
+        category: 'jesus',
+        index: 2
       },
       {
         id: 3,
@@ -75,7 +83,8 @@ const sacredThings = {
         description: '예수님 상입니다.',
         price: 10000,
         image: 'https://picsum.photos/308',
-        category: 'jesus'
+        category: 'jesus',
+        index: 3
       },
     ]
   }
