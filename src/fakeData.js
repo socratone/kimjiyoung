@@ -8,7 +8,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/300',
         category: 'cross',
-        index: 1
+        order: 1
       },
       {
         id: 2,
@@ -17,7 +17,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/301',
         category: 'cross',
-        index: 2
+        order: 2
       },
       {
         id: 3,
@@ -26,7 +26,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/302',
         category: 'cross',
-        index: 3
+        order: 3
       },
       {
         id: 4,
@@ -35,7 +35,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/303',
         category: 'cross',
-        index: 4
+        order: 4
       },
       {
         id: 5,
@@ -44,7 +44,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/304',
         category: 'cross',
-        index: 5
+        order: 5
       },
       {
         id: 6,
@@ -53,7 +53,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/305',
         category: 'cross',
-        index: 6
+        order: 6
       },
     ]
   },
@@ -66,7 +66,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/306',
         category: 'jesus',
-        index: 1
+        order: 1
       },
       {
         id: 2,
@@ -75,7 +75,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/307',
         category: 'jesus',
-        index: 2
+        order: 2
       },
       {
         id: 3,
@@ -84,7 +84,7 @@ const sacredThings = {
         price: 10000,
         image: 'https://picsum.photos/308',
         category: 'jesus',
-        index: 3
+        order: 3
       },
     ]
   }
