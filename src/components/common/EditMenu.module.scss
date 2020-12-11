@@ -1,0 +1,19 @@
+.wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: rgba(255, 255, 255, 0.582);
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 24px;
+  margin: 10px 16px;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

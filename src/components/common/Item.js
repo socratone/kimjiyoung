@@ -1,8 +1,10 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import EditMenu from './EditMenu';
 import styles from './Item.module.scss';
 
 const Item = ({ id, title, description, price, image, category }) => {
+  
   const history = useHistory();
 
   const showItemDetail = () => {
@@ -17,6 +19,7 @@ const Item = ({ id, title, description, price, image, category }) => {
           style={{backgroundImage: `url('${image}')`}}
           onClick={() => showItemDetail()}
         />
+        <EditMenu />
       </div>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
