@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/user';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
@@ -29,7 +29,7 @@ const Signin = () => {
 
   const handleLogin = async () => {
     if(!isValidInput(email, password)) return;
-    const { status, ok, message } = await postSignin(email, password);
+    const { ok, message } = await postSignin(email, password);
     setEmail('');
     setPassword('');
     setInfo(message);
