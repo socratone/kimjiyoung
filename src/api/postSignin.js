@@ -16,9 +16,9 @@ const postSignin = async (email, password) => {
     const { status, ok } = res;
     const { message, token } = await res.json();
     if (token) localStorage.setItem('token', token);
-    return { status, ok, message };
+    return { status, ok, message: message.toString() };
   } catch (error) {
-    return { status: null, ok: false, message: error };
+    return { status: null, ok: false, message: error.toString() };
   }
 };
 
