@@ -1,11 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './ItemDetail.module.scss';
-
-import { sacredThings } from '../../fakeData';
 
 const ItemDetail = () => {
   const { category, id } = useParams();
+  const sacredThings = useSelector(state => state.entities.sacredThings); 
+  
+  if (!sacredThings[category]) return null;
 
   const getCurrentItem = () => {
     const [ item ] = sacredThings[category].items.filter(item => {
@@ -25,10 +27,9 @@ const ItemDetail = () => {
         />
       </div>
       <div>
-        <p className={styles.title}>{category}</p>
         <div className={styles.text}>
           <p className={styles.title}>{title}</p>
-          <p>{price && price.toLocaleString() + '원'}</p>
+          {price && <p>{price.toLocaleString() + '원'}</p>}
         </div>
         <p>{description}</p>
       </div>

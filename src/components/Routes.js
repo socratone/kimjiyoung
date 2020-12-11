@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
 import LeftNav from './nav/LeftNav';
@@ -15,10 +15,21 @@ import Signout from './pages/Signout';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
 import ItemDetail from './pages/ItemDetail';
+import { setItems } from '../store/sacredThings';
+import getSacredThings from '../api/getSacredThings';
 import styles from './Routes.module.scss';
 
 const Routes = () => {
   const isBars = useSelector(state => state.ui.isBars);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const sacredThings = await getSacredThings();
+      dispatch(setItems(sacredThings));
+    }
+    fetchData();
+  }, []);
 
   return ( 
     <Router>
