@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux';
 
 const Goods = () => {
   const { category } = useParams();
-  const { items } = useSelector(state => state.entities.sacredThings[category]);
+  const sacredThings = useSelector(state => state.entities.sacredThings);
+
+  if (!sacredThings[category]) return null;
 
   const capitalizeFirstLetter = text => text[0].toUpperCase() + text.substring(1);
 
@@ -16,7 +18,7 @@ const Goods = () => {
       <p className={styles.title}>{capitalizeFirstLetter(category)}</p>
       <section className={styles.section}>
         <BlankItem />
-        {items && items.map(item => <Item {...item} key={item.id} />)}
+        {sacredThings[category].items.map(item => <Item {...item} key={item.id} />)}
       </section>
     </>
   );
