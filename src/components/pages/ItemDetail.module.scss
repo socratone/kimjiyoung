@@ -7,11 +7,6 @@
   margin-bottom: 72px;
 }
 
-.title {
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
 .imageWrap {
   position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
   width: 100%;
@@ -29,6 +24,20 @@
 
 .text {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 16px;
+}
+
+.description {
   font-size: 14px;
+  height: 100%;
+  margin: 8px 0;
+}
+
+.price {
+  font-size: 14px;
+  align-self: flex-end;
 }

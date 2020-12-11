@@ -26,12 +26,10 @@ const ItemDetail = () => {
           style={{backgroundImage: `url('${image}')`}}
         />
       </div>
-      <div>
-        <div className={styles.text}>
-          <p className={styles.title}>{title}</p>
-          {price && <p>{price.toLocaleString() + '원'}</p>}
-        </div>
-        <p>{description}</p>
+      <div className={styles.text}>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.description}>{description}</p>
+        {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
     </section>
   );
