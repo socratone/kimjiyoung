@@ -35,7 +35,7 @@ const Signin = () => {
     if(!isValidInput(email, password)) return;
     const { status, ok, message } = await postSignin(email, password);
     const user = getUser();
-    if (ok && user.account === 'admin') dispatch(setUser(user));
+    if (ok) dispatch(setUser(user));
     setInfo(message);
     setEmail('');
     setPassword('');
