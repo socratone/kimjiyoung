@@ -37,7 +37,7 @@ const Signin = () => {
   };
 
   const handleLogout = () => {
-    setInfo('Admin 계정으로 로그인 해주세요.');
+    setInfo('Admin 계정으로 로그인해주세요.');
     localStorage.setItem('token', '');
     dispatch(disableAdmin());
   };
@@ -46,7 +46,7 @@ const Signin = () => {
     return (
       <ul className={styles.wrap}>
         <li>
-          <p className={styles.text}>Admin 계정으로 로그인 됐습니다.</p>
+          <p className={styles.text}>Admin 계정으로 로그인됐습니다.</p>
         </li>
         <li>
           <Button width="100px" onClick={() => handleLogout()}>로그아웃</Button>

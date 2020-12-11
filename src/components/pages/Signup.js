@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import isValidEmail from '../../helper/isValidEmail';
+import postSignup from '../../api/postSignup';
 import styles from './Signup.module.scss';
 
 const Signup = () => {
-  const [info, setInfo] = useState('빈 칸을 입력해 주세요.');
+  const [info, setInfo] = useState('빈 칸을 입력해주세요.');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [name, setName] = useState('');
+  const [isSignup, setIsSignup] = useState(false);
 
   const isValidInput = (email, password, password2, name) => {
     if (email.length < 1) {
@@ -34,15 +36,29 @@ const Signup = () => {
     return true;
   };
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if(!isValidInput(email, password, password2, name)) return;
+    const { status, ok, message } = await postSignup(email, password, name);
+    console.log('message:', message)
+    setInfo(message);
+    if (ok) setIsSignup(true);
   };
+
+  if (isSignup) {
+    return (
+      <ul className={styles.wrap}>
+        <li>
+          <p className={styles.text}>{info}</p>
+        </li>
+      </ul>
+    );
+  }
 
   return (
     <ul className={styles.wrap}>
       <li>
-          <p className={styles.text}>{info}</p>
-        </li>
+        <p className={styles.text}>{info}</p>
+      </li>
       <li>
         <TextInput 
           width="200px" 
