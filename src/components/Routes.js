@@ -9,7 +9,7 @@ import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
 import LeftNav from './nav/LeftNav';
 import Profile from './pages/Profile';
-import Admin from './pages/Admin';
+import Signin from './pages/Signin';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
 import ItemDetail from './pages/ItemDetail';
@@ -38,8 +38,8 @@ const Routes = () => {
               <Route path="/profile">
                 <Profile />
               </Route>
-              <Route path="/admin">
-                <Admin />
+              <Route path="/signin">
+                <Signin />
               </Route>
               <Route path="/item/:category/:id">
                 <ItemDetail />

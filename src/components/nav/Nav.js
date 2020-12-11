@@ -24,7 +24,7 @@ const Nav = () => {
           <Link to="/profile">Profile</Link>
         </li>
         <li className={styles.li}>
-          <Link to="/admin">Admin</Link>
+          <Link to="/signin">Signin</Link>
         </li>
       </ul>
     </header> 

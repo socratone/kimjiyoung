@@ -5,12 +5,12 @@ import Button from '../common/Button';
 import TextInput from '../common/TextInput';
 import postSignin from '../../api/postSignin';
 import getUser from '../../helper/getUser';
-import styles from './Admin.module.scss';
+import styles from './Signin.module.scss';
 
-const Admin = () => {
+const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [info, setInfo] = useState('Admin 계정으로 로그인 해주세요.');
+  const [info, setInfo] = useState('페이지를 수정하려면 로그인 해주세요.');
 
   const dispatch = useDispatch();
   const isAdmin = useSelector(state => state.entities.isAdmin);
@@ -83,4 +83,4 @@ const Admin = () => {
   );
 }
  
-export default Admin;
+export default Signin;
