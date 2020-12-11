@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { activateBars } from '../../store/isBars';
 import styles from './Nav.module.scss';
 
 const Nav = () => {
   const dispatch = useDispatch();
+  const userId = useSelector(state => state.entities.user.id);
 
   const barsClick = () => {
     dispatch(activateBars());
@@ -23,12 +24,15 @@ const Nav = () => {
         <li className={styles.li}>
           <Link to="/profile">Profile</Link>
         </li>
-        <li className={styles.li}>
+        {!userId && <li className={styles.li}>
           <Link to="/signup">Signup</Link>
-        </li>
-        <li className={styles.li}>
+        </li>}
+        {!userId && <li className={styles.li}>
           <Link to="/signin">Signin</Link>
-        </li>
+        </li>}
+        {userId && <li className={styles.li}>
+          <Link to="/signout">Signout</Link>
+        </li>}
       </ul>
     </header> 
   );

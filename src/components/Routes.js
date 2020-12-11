@@ -11,6 +11,7 @@ import LeftNav from './nav/LeftNav';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
+import Signout from './pages/Signout';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
 import ItemDetail from './pages/ItemDetail';
@@ -39,6 +40,9 @@ const Routes = () => {
               </Route>
               <Route path="/signin">
                 <Signin />
+              </Route>
+              <Route path="/signout">
+                <Signout />
               </Route>
               <Route path="/item/:category/:id">
                 <ItemDetail />

@@ -6,7 +6,7 @@ import postSignup from '../../api/postSignup';
 import styles from './Signup.module.scss';
 
 const Signup = () => {
-  const [info, setInfo] = useState('빈 칸을 입력해주세요.');
+  const [info, setInfo] = useState('회원가입을 위해 빈 칸을 입력해주세요.');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
