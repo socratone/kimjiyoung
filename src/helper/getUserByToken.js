@@ -1,13 +1,14 @@
 import jwtDecode from 'jwt-decode'
 
-const getUser = () => {
+const getUserByToken = () => {
   try {
     const jwt = localStorage.getItem('token');
     const user = jwtDecode(jwt);
-    return user;
+    console.log('user:', user)
+    return JSON.parse(user.data);
   } catch (error) {
     return { account: null };
   }
 };
 
-export default getUser;
+export default getUserByToken;

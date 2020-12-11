@@ -4,7 +4,7 @@ import { setUser } from '../../store/user';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
 import postSignin from '../../api/postSignin';
-import getUser from '../../helper/getUser';
+import getUserByToken from '../../helper/getUserByToken';
 import styles from './Signin.module.scss';
 import { useHistory } from 'react-router-dom';
 
@@ -34,7 +34,8 @@ const Signin = () => {
     setPassword('');
     setInfo(message);
     if (ok) {
-      const user = getUser();
+      const user = getUserByToken();
+      console.log('user:', user)
       dispatch(setUser(user));
       history.push('/')
     };
