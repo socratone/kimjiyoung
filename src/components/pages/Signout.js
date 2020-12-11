@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setUser, removeUser } from '../../store/user';
+import { removeUser } from '../../store/user';
 import Button from '../common/Button';
 import styles from './Signout.module.scss';
 
