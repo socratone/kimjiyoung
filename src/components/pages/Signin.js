@@ -8,14 +8,14 @@ import getUser from '../../helper/getUser';
 import styles from './Signin.module.scss';
 
 const Signin = () => {
+  const [info, setInfo] = useState('페이지를 수정하려면 로그인 해주세요.');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [info, setInfo] = useState('페이지를 수정하려면 로그인 해주세요.');
 
   const dispatch = useDispatch();
   const isAdmin = useSelector(state => state.entities.isAdmin);
 
-  const validateInput = (email, password) => {
+  const isValidInput = (email, password) => {
     if (email.length < 1) {
       setInfo('아이디를 입력해주세요.');
       return false;
@@ -27,7 +27,7 @@ const Signin = () => {
   };
 
   const handleLogin = async () => {
-    if(!validateInput(email, password)) return;
+    if(!isValidInput(email, password)) return;
     const { status, ok, message } = await postSignin(email, password);
     const user = getUser();
     if (ok && user.account === 'admin') dispatch(activateAdmin());
@@ -64,6 +64,7 @@ const Signin = () => {
         <TextInput 
           width="200px" 
           type="text" 
+          placeholder="email"
           value={email} 
           onChange={({ target }) => setEmail(target.value)} 
         />
@@ -72,6 +73,7 @@ const Signin = () => {
         <TextInput 
           width="200px" 
           type="password" 
+          placeholder="password"
           value={password} 
           onChange={({ target }) => setPassword(target.value)} 
         />

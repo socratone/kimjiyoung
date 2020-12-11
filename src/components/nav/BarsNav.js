@@ -23,6 +23,9 @@ const BarsNav = () => {
             <Link to="/profile" onClick={() => removeNav()}>Profile</Link>
           </li>
           <li className={styles.li}>
+            <Link to="/signup" onClick={() => removeNav()}>Signup</Link>
+          </li>
+          <li className={styles.li}>
             <Link to="/signin" onClick={() => removeNav()}>Signin</Link>
           </li>
           <li className={styles.li}>

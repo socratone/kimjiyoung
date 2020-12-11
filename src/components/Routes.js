@@ -9,6 +9,7 @@ import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
 import LeftNav from './nav/LeftNav';
 import Profile from './pages/Profile';
+import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
@@ -37,6 +38,9 @@ const Routes = () => {
             <Switch>
               <Route path="/profile">
                 <Profile />
+              </Route>
+              <Route path="/signup">
+                <Signup />
               </Route>
               <Route path="/signin">
                 <Signin />
