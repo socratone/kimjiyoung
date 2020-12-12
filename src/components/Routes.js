@@ -14,6 +14,7 @@ import Signin from './pages/Signin';
 import Signout from './pages/Signout';
 import Home from  './pages/Home';
 import Goods from './pages/Goods';
+import Editor from './common/Editor';
 import ItemDetail from './pages/ItemDetail';
 import { setItems } from '../store/sacredThings';
 import getSacredThings from '../api/getSacredThings';
@@ -60,6 +61,9 @@ const Routes = () => {
               </Route>
               <Route path="/item/:category">
                 <Goods />
+              </Route>
+              <Route path="/editor">
+                <Editor />
               </Route>
               <Route path="/">
                 <Home />

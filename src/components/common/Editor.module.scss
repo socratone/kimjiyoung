@@ -1,0 +1,35 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  
+  p {
+    font-size: 14px;
+  }
+}
+
+
+.title {
+  margin-bottom: 8px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.description {
+  height: 160px;
+  margin-bottom: 8px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.price {
+  margin-bottom: 8px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.buttonWrap {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
