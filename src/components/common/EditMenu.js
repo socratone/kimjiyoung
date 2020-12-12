@@ -9,10 +9,13 @@ const EditMenu = () => {
     return ( 
       <div className={styles.wrap}>
         <p className={styles.icon}>
-          <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
         </p>
         <p className={styles.icon}>
-          <i className="fa fa-trash-o" aria-hidden="true"></i>
+          <i className="fa fa-minus" aria-hidden="true"></i>
+        </p>
+        <p className={styles.icon}>
+          <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
         </p>
       </div> 
     );
