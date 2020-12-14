@@ -33,10 +33,13 @@ const BarsNav = () => {
             <Link to="/signout" onClick={() => removeNav()}>Signout</Link>
           </li>}
           <li className={styles.li}>
-            <Link to="/item/cross" onClick={() => removeNav()}>십자가</Link>
+            <Link to="/item/statue">성상</Link>
           </li>
           <li className={styles.li}>
-            <Link to="/item/jesus" onClick={() => removeNav()}>예수님</Link>
+            <Link to="/item/cross">십자가</Link>
+          </li>
+          <li className={styles.li}>
+            <Link to="/item/tools">기도소품</Link>
           </li>
           <li className={styles.li}>
           <a href="https://www.instagram.com/lara_house" target="_blank">인스타그램</a>

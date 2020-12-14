@@ -7,10 +7,13 @@ const LeftNav = () => {
     <nav className={styles.nav}>
       <ul className={styles.ul}>
         <li className={styles.li}>
+          <Link to="/item/statue">성상</Link>
+        </li>
+        <li className={styles.li}>
           <Link to="/item/cross">십자가</Link>
         </li>
         <li className={styles.li}>
-          <Link to="/item/jesus">예수님</Link>
+          <Link to="/item/tools">기도소품</Link>
         </li>
         <li className={styles.li}>
           <a href="https://www.instagram.com/lara_house" target="_blank">인스타그램</a>
