@@ -2,11 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './BlankItem.module.scss';
 
-const BlankItem = () => {
+const BlankItem = ({ category }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push('/editor');
+    history.push({
+      pathname: '/editor',
+      state: { category }
+    });
   };
 
   return (  

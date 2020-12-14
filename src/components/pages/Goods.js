@@ -18,7 +18,7 @@ const Goods = () => {
     <>
       <p className={styles.title}>{capitalizeFirstLetter(category)}</p>
       <section className={styles.section}>
-        <BlankItem />
+        <BlankItem category={category} />
         {sacredThings[category].items.map(item => (
           <Item 
             {...item} 

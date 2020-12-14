@@ -1,8 +1,11 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Button from './Button';
 import styles from './Editor.module.scss';
 
-const Editor = () => {
+const Editor = ({ category }) => {
+  const location = useLocation();
+
   return (  
     <section className={styles.editor}>
       <p>Title</p>
@@ -11,6 +14,7 @@ const Editor = () => {
       <textarea className={styles.description}></textarea>
       <p>Price</p>
       <input className={styles.price} type="text" />
+      <p>Category : {location.state.category}</p>
       <div>
         <input type="file" accept="image/png, image/jpeg"/>
       </div>
