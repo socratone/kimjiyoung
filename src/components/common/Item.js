@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import EditMenu from './EditMenu';
 import styles from './Item.module.scss';
 
-const Item = ({ id, title, description, price, image, category }) => {
+const Item = ({ id, title, description, price, mainImage, category }) => {
   
   const history = useHistory();
 
@@ -16,7 +16,7 @@ const Item = ({ id, title, description, price, image, category }) => {
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
-          style={{backgroundImage: `url('${image}')`}}
+          style={{backgroundImage: `url('${mainImage}')`}}
           onClick={() => showItemDetail()}
         />
         <EditMenu />

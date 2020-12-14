@@ -16,14 +16,14 @@ const ItemDetail = () => {
     return item;
   }
 
-  const { title, description, price, image } = getCurrentItem();
+  const { title, description, price, mainImage } = getCurrentItem();
 
   return ( 
     <section className={styles.item}>
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
-          style={{backgroundImage: `url('${image}')`}}
+          style={{backgroundImage: `url('${mainImage}')`}}
         />
       </div>
       <div className={styles.text}>
