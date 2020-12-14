@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Item from '../common/Item';
 import BlankItem from '../common/BlankItem';
 import styles from './Goods.module.scss';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Goods = () => {
   const { category } = useParams();
+  const history = useHistory();
   const sacredThings = useSelector(state => state.entities.sacredThings);
 
   if (!sacredThings[category]) return null;
@@ -18,7 +19,14 @@ const Goods = () => {
       <p className={styles.title}>{capitalizeFirstLetter(category)}</p>
       <section className={styles.section}>
         <BlankItem />
-        {sacredThings[category].items.map(item => <Item {...item} key={item.id} />)}
+        {sacredThings[category].items.map(item => (
+          <Item 
+            {...item} 
+            onClick={() => history.push(`/item/${item.category}/${item.id}`)} 
+            isEditMenu={true}
+            key={item.id} 
+          />
+        ))}
       </section>
     </>
   );
