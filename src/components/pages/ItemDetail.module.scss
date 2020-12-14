@@ -10,7 +10,7 @@
 .imageWrap {
   position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
   width: 100%;
-  padding-bottom: 120%; /* 16:9 비율 */
+  padding-bottom: 100%; /* 가로 세로 비율 */
 }
 
 .image {
