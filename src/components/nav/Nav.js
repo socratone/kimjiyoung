@@ -7,6 +7,8 @@ import styles from './Nav.module.scss';
 const Nav = () => {
   const dispatch = useDispatch();
   const userId = useSelector(state => state.entities.user.id);
+  const isNav = useSelector(state => state.ui.isNav); 
+  if (!isNav) return null;
 
   const barsClick = () => {
     dispatch(activateBars());

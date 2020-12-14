@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import ImageViewer from '../common/ImageViewer';
 import styles from './ItemDetail.module.scss';
+import { activateNav, disableNav } from '../../store/isNav';
 
-const Image = ({ url }) => (
-  <div className={styles.imageWrap}>
-    <div
-      className={styles.image} 
-      style={{backgroundImage: `url('${url}')`}}
-    />
-  </div>
-);
+const Image = ({ url }) => {
+  const [isLarge, setIsLarge] = useState(false);
+  const dispatch = useDispatch();
+
+  const enlargeImage = () => {
+    dispatch(disableNav());
+    setIsLarge(true);
+  };
+  
+  const reduceImage = () => {
+    dispatch(activateNav());
+    setIsLarge(false);
+  };
+
+  return (
+    <div className={styles.imageWrap}>
+      <div
+        className={styles.image} 
+        style={{backgroundImage: `url('${url}')`}}
+        onClick={enlargeImage}
+      />
+      {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
+    </div>
+  );
+};
 
 const ItemDetail = () => {
   const { category, id } = useParams();
