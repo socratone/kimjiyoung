@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { disableBars } from '../../store/isBars';
+import Instagram from '../icon/Instagram';
+import Kakao from '../icon/Kakao';
 import styles from './BarsNav.module.scss';
 
 const BarsNav = () => {
@@ -42,13 +44,17 @@ const BarsNav = () => {
             <Link to="/item/tools">기도소품</Link>
           </li>
           <li className={styles.li}>
-          <a href="https://www.instagram.com/lara_house" target="_blank">인스타그램</a>
+          <a href="http://blog.naver.com/larahouse" target="_blank">블로그</a>
           </li>
           <li className={styles.li}>
-            <a href="http://blog.naver.com/larahouse" target="_blank">블로그</a>
+            <a href="https://www.instagram.com/lara_house" target="_blank">
+              <Instagram size={14} />
+            </a>
           </li>
           <li className={styles.li}>
-            <a href="https://pf.kakao.com/_aCPLxl" target="_blank">카카오톡</a>
+            <a href="https://pf.kakao.com/_aCPLxl" target="_blank">
+              <Kakao size={14} />
+            </a>
           </li>
         </ul>
       </nav> 
