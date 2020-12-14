@@ -3,6 +3,15 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './ItemDetail.module.scss';
 
+const Image = ({ url }) => (
+  <div className={styles.imageWrap}>
+    <div
+      className={styles.image} 
+      style={{backgroundImage: `url('${url}')`}}
+    />
+  </div>
+);
+
 const ItemDetail = () => {
   const { category, id } = useParams();
   const sacredThings = useSelector(state => state.entities.sacredThings); 
@@ -22,24 +31,14 @@ const ItemDetail = () => {
 
   return ( 
     <section className={styles.item}>
-      <div className={styles.imageWrap}>
-        <div
-          className={styles.image} 
-          style={{backgroundImage: `url('${mainImage}')`}}
-        />
-      </div>
+      <Image url={mainImage}/>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
-      {subImagesArr && subImagesArr.map((image, index) => (
-        <div className={styles.imageWrap} key={index}>
-          <div
-            className={styles.image} 
-            style={{backgroundImage: `url('${image}')`}}
-          />
-        </div>
+      {subImagesArr && subImagesArr.map((subImage, index) => (
+        <Image url={subImage} key={index}/>
       ))}
     </section>
   );
