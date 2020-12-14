@@ -16,7 +16,9 @@ const ItemDetail = () => {
     return item;
   }
 
-  const { title, description, price, mainImage } = getCurrentItem();
+  const { title, description, price, mainImage, subImages } = getCurrentItem();
+  let subImagesArr;
+  if (subImages) subImagesArr = subImages.split(',');
 
   return ( 
     <section className={styles.item}>
@@ -31,6 +33,14 @@ const ItemDetail = () => {
         <p className={styles.description}>{description}</p>
         {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
+      {subImagesArr && subImagesArr.map((image, index) => (
+        <div className={styles.imageWrap} key={index}>
+          <div
+            className={styles.image} 
+            style={{backgroundImage: `url('${image}')`}}
+          />
+        </div>
+      ))}
     </section>
   );
 }
