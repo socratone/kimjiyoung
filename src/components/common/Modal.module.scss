@@ -1,0 +1,40 @@
+.modalBackground {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  // disabled animation
+  // transition-property: top;
+  // transition-duration: 0.5s;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: white;
+  border: 1px gainsboro solid;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0), 0 6px 6px rgba(0, 0, 0, 0.05);
+
+  // disabled animation
+  // transform: scale(0.95);
+  // transition-property: transform;
+  // transition-duration: 0.5s;
+}
+
+.text {
+  margin-bottom: 8px;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
+}
