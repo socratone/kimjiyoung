@@ -1,35 +1,32 @@
 .editor {
   display: flex;
   flex-direction: column;
-  
-  p {
-    font-size: 14px;
-  }
 }
 
-
-.title {
+.li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  font-size: 14px;
   margin-bottom: 8px;
+}
+
+.textInput {
   padding: 8px;
   font-size: 16px;
 }
 
 .description {
   height: 160px;
-  margin-bottom: 8px;
   padding: 8px;
   font-size: 16px;
 }
 
-.price {
-  margin-bottom: 8px;
-  padding: 8px;
-  font-size: 16px;
+.plusButton {
+  cursor: pointer;
 }
 
 .buttonWrap {
-  margin-top: 8px;
-  margin-bottom: 8px;
   display: flex;
   justify-content: center;
 }
