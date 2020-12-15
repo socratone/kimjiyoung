@@ -1,8 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setItems } from '../../store/sacredThings';
 import Button from './Button';
 import YesNoModal from './YesNoModal';
 import ConfirmModal from './ConfirmModal';
+import postItem from '../../api/postItem';
+import getSacredThings from '../../api/getSacredThings';
 import styles from './Editor.module.scss';
 
 const Li = ({ children }) => (
@@ -24,17 +28,29 @@ const Editor = () => {
   const [price, setPrice] = useState('');
   const [storeLink, setStoreLink] = useState('');
   const [modal, setModal] = useState('');
+  const [message, setMessage] = useState('');
   const image = useRef(null);
 
-  const location = useLocation();
   const history = useHistory();
-  
-  const postData = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { category } = location.state;
+
+  const postData = async () => {
     if (title.length < 1) return setModal('untitled');
-    console.log('price:', price)
     if (price.length > 0 && !Number(price)) return setModal('price');
-    if (!image.current.files[0]) return setModal('image');
-    setModal('success')
+    const imageFile = image.current.files[0];
+    if (!imageFile) return setModal('image');
+
+    const { ok, message } = await postItem({ title, description, price, category, storeLink, imageFile });
+    if (ok) {
+      const sacredThings = await getSacredThings();
+      dispatch(setItems(sacredThings));
+      history.goBack();
+    } else {
+      setMessage(message);
+      setModal('message');
+    }
   };
 
   return (  
@@ -57,7 +73,7 @@ const Editor = () => {
           <TextInput value={price} onChange={({ target }) => setPrice(target.value)} />
         </Li>
         <Li>
-          <p>카테고리 : {location.state.category}</p>
+          <p>카테고리 : {category}</p>
         </Li>
         <Li>
           <p>스마트 스토어 링크</p>
@@ -81,15 +97,12 @@ const Editor = () => {
         text="대표 이미지를 선택해야 합니다."
         yes={() => setModal('')} 
       />}
-      {modal === 'success' && <ConfirmModal 
-        text="업로드를 성공했습니다."
-        yes={() => {
-          setModal('');
-          // TODO: items state 변경
-        }} 
-      />}
       {modal === 'price' && <ConfirmModal 
         text="가격에는 0을 제외한 숫자만 입력할 수 있습니다."
+        yes={() => setModal('')} 
+      />}
+      {modal === 'message' && <ConfirmModal 
+        text={'다음 에러가 발생했습니다.\\' + message}
         yes={() => setModal('')} 
       />}
       {modal === 'cancel' && <YesNoModal 
