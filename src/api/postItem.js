@@ -1,6 +1,5 @@
 const url = process.env.REACT_APP_API_URL;
 
-
 const postItem = async ({ title, description, price, category, storeLink, imageFile }) => {
   const headers = new Headers();
   const token = localStorage.getItem('token')
@@ -24,11 +23,15 @@ const postItem = async ({ title, description, price, category, storeLink, imageF
       redirect: 'follow'
     });
 
-    const { status, ok } = res;
-    const { message } = await res.json();
-    return { status, ok, message: message.toString() };
+    const result = await res.json();
+    if (res.status === 200) {
+      // TODO: 사진을 올린다.
+      return result;
+    } else if (res.status === 500) {
+      return { error: result.error };
+    }
   } catch (error) {
-    return { status: null, ok: false, message: error.toString() };
+    return { error };
   }
 };
 

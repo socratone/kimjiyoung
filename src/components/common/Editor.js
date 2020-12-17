@@ -42,14 +42,18 @@ const Editor = () => {
     const imageFile = image.current.files[0];
     if (!imageFile) return setModal('image');
 
-    const { ok, message } = await postItem({ title, description, price, category, storeLink, imageFile });
-    if (ok) {
-      const sacredThings = await getSacredThings();
-      dispatch(setItems(sacredThings));
-      history.goBack();
-    } else {
-      setMessage(message);
+    const result = await postItem({ title, description, price, category, storeLink, imageFile });
+    if (result.error) {
+      setMessage(result.error.message);
       setModal('message');
+    } else {
+      const result = await getSacredThings();
+      if (result.error) {
+        setMessage(result.error.message);
+        return setModal('message');
+      }
+      dispatch(setItems(result));
+      history.goBack();
     }
   };
 
