@@ -26,8 +26,9 @@ const Routes = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const sacredThings = await getSacredThings();
-      dispatch(setItems(sacredThings));
+      const result = await getSacredThings();
+      if (result.error) return alert(result.error.message);
+      dispatch(setItems(result));
     }
     fetchData();
   }, []);
