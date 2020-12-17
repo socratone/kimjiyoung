@@ -8,7 +8,7 @@ const getSacredThings = async () => {
       return result; 
     } else if (res.status === 500) {
       return { error: result.error };
-    };
+    }
   } catch (error) {
     return { error };
   }
