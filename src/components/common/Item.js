@@ -11,7 +11,7 @@ const Item = ({ id, title, description, price, mainImage, category, onClick, isE
           style={{backgroundImage: `url('${mainImage}')`}}
           onClick={onClick}
         />
-        {isEditMenu && <EditMenu />}
+        {isEditMenu && <EditMenu category={category} id={id} />}
       </div>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>

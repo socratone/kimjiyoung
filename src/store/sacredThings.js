@@ -6,9 +6,14 @@ const slice = createSlice({
   reducers: {
     setItems: (state, action) => {
       return action.payload;
+    },
+    removeItem: (sacredThings, action) => {
+      const { category, id } = action.payload;
+      const items = sacredThings[category].items.filter(item => item.id !== id);
+      sacredThings[category].items = items;
     }
   }
 });
 
-export const { setItems } = slice.actions;
+export const { setItems, removeItem } = slice.actions;
 export default slice.reducer;
