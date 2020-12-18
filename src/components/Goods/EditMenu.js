@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { removeItem } from '../../store/sacredThings';
 import deleteItem from '../../api/deleteItem';
 import { deleteImageFile } from '../../api/imageFile';
-import YesNoModal from './YesNoModal';
+import YesNoModal from '../common/YesNoModal';
 import styles from './EditMenu.module.scss';
 
 const EditMenu = ({ category, id }) => {

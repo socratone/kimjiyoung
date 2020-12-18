@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import Item from '../common/Item';
-import BlankItem from '../common/BlankItem';
+import Item from '../Goods/Item';
+import BlankItem from '../Goods/BlankItem';
 import styles from './Goods.module.scss';
 import { useSelector } from 'react-redux';
 

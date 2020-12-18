@@ -1,6 +1,6 @@
 import React from 'react';
 import getImageURL from '../../helper/getImageURL';
-import EditMenu from './EditMenu';
+import EditMenu from '../Goods/EditMenu';
 import styles from './Item.module.scss';
 
 const Item = ({ id, title, description, price, mainImage, category, onClick, isEditMenu }) => {
