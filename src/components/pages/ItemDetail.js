@@ -22,14 +22,16 @@ const Image = ({ url }) => {
   };
 
   return (
-    <div className={styles.imageWrap}>
-      <div
-        className={styles.image} 
-        style={{backgroundImage: `url('${url}')`}}
-        onClick={enlargeImage}
-      />
-      {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
-    </div>
+    <article>
+      <div className={styles.imageWrap}>
+        <div
+          className={styles.image} 
+          style={{backgroundImage: `url('${url}')`}}
+          onClick={enlargeImage}
+        />
+        {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
+      </div>
+    </article>
   );
 };
 
