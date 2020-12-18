@@ -1,4 +1,5 @@
 import React from 'react';
+import getImageURL from '../../helper/getImageURL';
 import EditMenu from './EditMenu';
 import styles from './Item.module.scss';
 
@@ -8,7 +9,7 @@ const Item = ({ id, title, description, price, mainImage, category, onClick, isE
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
-          style={{backgroundImage: `url('${mainImage}')`}}
+          style={{backgroundImage: `url('${getImageURL(mainImage, category)}')`}}
           onClick={onClick}
         />
         {isEditMenu && <EditMenu category={category} id={id} />}

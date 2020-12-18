@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { activateNav, disableNav } from '../../store/isNav';
+import getImageURL from '../../helper/getImageURL';
 import ImageViewer from '../common/ImageViewer';
 import styles from './ItemDetail.module.scss';
-import { activateNav, disableNav } from '../../store/isNav';
 
 const Image = ({ url }) => {
   const [isLarge, setIsLarge] = useState(false);
@@ -23,7 +24,7 @@ const Image = ({ url }) => {
     <div className={styles.imageWrap}>
       <div
         className={styles.image} 
-        style={{backgroundImage: `url('${url}')`}}
+        style={{backgroundImage: `url('${getImageURL(url)}')`}}
         onClick={enlargeImage}
       />
       {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
@@ -50,14 +51,14 @@ const ItemDetail = () => {
 
   return ( 
     <section className={styles.item}>
-      <Image url={mainImage}/>
+      <Image url={category + '/' + mainImage}/>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
       {subImagesArr && subImagesArr.map((subImage, index) => (
-        <Image url={subImage} key={index}/>
+        <Image url={category + '/' + subImage} key={index}/>
       ))}
     </section>
   );
