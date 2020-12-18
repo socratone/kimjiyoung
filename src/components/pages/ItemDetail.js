@@ -65,14 +65,14 @@ const ItemDetail = () => {
   return ( 
     <section className={styles.item}>
       <Image url={getImageURL(category + '/' + mainImage)}/>
-      <div className={styles.text}>
+      <article className={styles.text}>
         <p className={styles.title}>{title}</p>
         <div className={styles.description}>{replaceToP(description)}</div>
         <div className={styles.purchaseWrap}>
           {smartStore && <Button width="96px" onClick={() => goPurchaseSite()}>구매하러가기</Button>}
           {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
         </div>
-      </div>
+      </article>
       <BlankItem category={category} id={id} />
       {subImagesArr && subImagesArr.map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} key={index}/>
