@@ -24,7 +24,7 @@ const Image = ({ url }) => {
     <div className={styles.imageWrap}>
       <div
         className={styles.image} 
-        style={{backgroundImage: `url('${getImageURL(url)}')`}}
+        style={{backgroundImage: `url('${url}')`}}
         onClick={enlargeImage}
       />
       {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
@@ -51,14 +51,14 @@ const ItemDetail = () => {
 
   return ( 
     <section className={styles.item}>
-      <Image url={category + '/' + mainImage}/>
+      <Image url={getImageURL(category + '/' + mainImage)}/>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
       {subImagesArr && subImagesArr.map((subImage, index) => (
-        <Image url={category + '/' + subImage} key={index}/>
+        <Image url={getImageURL(category + '/' + subImage)} key={index}/>
       ))}
     </section>
   );
