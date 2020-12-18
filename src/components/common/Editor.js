@@ -134,10 +134,12 @@ const Editor = () => {
         </Li>
         <Li>
           <p>대표 이미지*</p>
-          {!imageFile && <input ref={file} type="file" accept="image/png, image/jpeg"/>}
-          {!imageFile && <Button width="64px" onClick={() => handleMainImageUploadButton()}>업로드</Button>}
-          {imageFile && <p>{imageFile.name}</p>}
-          {/* TODO: 삭제 버튼 */}
+          <div className={styles.mainImageWrap}>
+            {!imageFile && <Button width="64px" marginRight="8px" onClick={() => handleMainImageUploadButton()}>업로드</Button>}
+            {!imageFile && <input ref={file} type="file" accept="image/png, image/jpeg"/>}
+            {imageFile && <p>{imageFile.name}</p>}
+            {/* TODO: 삭제 버튼 */}
+          </div>
         </Li>
         <div className={styles.buttonWrap}>
           {!id && <Button width="64px" onClick={() => handlePostButton()} marginRight="8px">등록</Button>}
