@@ -5,7 +5,7 @@ const region = 'ap-northeast-2';
 const accessKeyId = process.env.REACT_APP_S3_KEY_ID;
 const secretAccessKey = process.env.REACT_APP_S3_SECRET_KEY;
 
-const putImageFile = async (file, category) => {  
+const putImageFile = async (file, category, name) => {  
   AWS.config.update({
     region,
     accessKeyId,
@@ -15,7 +15,7 @@ const putImageFile = async (file, category) => {
   const upload = new AWS.S3.ManagedUpload({
     params: {
       Bucket: albumBucketName,
-      Key: `sacred-things/${category}/${file.name}`,
+      Key: `sacred-things/${category}/${name}`,
       Body: file,
       ACL: "public-read"
     }

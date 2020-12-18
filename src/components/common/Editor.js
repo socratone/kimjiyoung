@@ -31,7 +31,7 @@ const Editor = () => {
   const [imageFile, setImageFile] = useState(null);
   const [modal, setModal] = useState(null);
 
-  const file = useRef(null);
+  const inputFile = useRef(null);
 
   const sacredThings = useSelector(state => state.entities.sacredThings);
   const history = useHistory();
@@ -52,11 +52,12 @@ const Editor = () => {
   
   useEffect(() => {
     if (id && sacredThings[category]) {
-      const { title, description, price, smartStore } = getItemById(id);
+      const { title, description, price, smartStore, mainImage } = getItemById(id);
       title && setTitle(title);
       description && setDescription(description);
       price && setPrice(price);
       smartStore && setStoreLink(smartStore);
+      mainImage && setImageFile({ name: mainImage })
     }
   }, [sacredThings]);
 
@@ -73,7 +74,7 @@ const Editor = () => {
           yes={() => setModal(null)} 
         />
       );
-    } else if (modal.kind === 'yes-no') {
+    } else if (modal.kind === 'cancel') {
       return (
         <YesNoModal 
           text={modal.message}
@@ -119,22 +120,34 @@ const Editor = () => {
 
   const handleMainImageUploadButton = async () => {
     // TODO: indicator
-    const imageFile = file.current.files[0];
-    if (!imageFile) return;
+    const file = inputFile.current.files[0];
+    if (!file) return;
 
     // 같은 이름의 파일이 있는지 확인
     const s3Files = await listImageFiles(`/sacred-things/${category}`);
     if (s3Files.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + s3Files.error.message);
     }
-    const [sameFile] = s3Files.filter(file => file.Key === `sacred-things/${category}/${imageFile.name}`);
+    const [sameFile] = s3Files.filter(s3File => s3File.Key === `sacred-things/${category}/${file.name}`);
     if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\다른 이름으로 업로드해 주세요.');
     
-    const result = await putImageFile(imageFile, category);
+    const result = await putImageFile(file, category, file.name);
     if (result.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
     }
-    setImageFile(imageFile);
+    setImageFile({ name: file.name });
+  };
+
+  const handleMainImageChangeButton = async () => {
+    const file = inputFile.current.files[0];
+    if (!file) return;
+
+    // 이름은 이전의 것으로 한다.
+    const result = await putImageFile(file, category, imageFile.name);
+    if (result.error) {
+      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
+    }
+    setImageFile({ name: file.name });
   };
 
   return (  
@@ -165,17 +178,17 @@ const Editor = () => {
         </Li>
         <Li>
           <p>대표 이미지*</p>
-          <div className={styles.mainImageWrap}>
+          <div className={styles.mainImageInputWrap}>
             {!imageFile && <Button width="64px" marginRight="8px" onClick={() => handleMainImageUploadButton()}>업로드</Button>}
-            {!imageFile && <input ref={file} type="file" accept="image/png, image/jpeg"/>}
-            {imageFile && <p>{imageFile.name}</p>}
-            {/* TODO: 삭제 버튼 */}
+            {imageFile && <Button width="64px" marginRight="8px" onClick={() => handleMainImageChangeButton()}>바꾸기</Button>}
+            {imageFile && <span style={{ marginRight: "8px" }}>{imageFile.name}</span>}
+            <input ref={inputFile} className={styles.mainImageInput} type="file" accept="image/png, image/jpeg"/>
           </div>
         </Li>
         <div className={styles.buttonWrap}>
           {!id && <Button width="64px" onClick={() => handlePostButton()} marginRight="8px">등록</Button>}
           {id && <Button width="64px" onClick={() => handleEditButton()} marginRight="8px">수정</Button>}
-          <Button width="64px" onClick={() => createModal('yes-no', '작성한 내용이 지워집니다.\\정말로 취소하시겠습니까?')}>취소</Button>
+          <Button width="64px" onClick={() => createModal('cancel', '작성한 내용이 지워집니다.\\정말로 취소하시겠습니까?')}>취소</Button>
         </div>
       </ul>
 
