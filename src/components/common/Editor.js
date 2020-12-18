@@ -135,7 +135,7 @@ const Editor = () => {
         <Li>
           <p>대표 이미지*</p>
           {!imageFile && <input ref={file} type="file" accept="image/png, image/jpeg"/>}
-          {!imageFile && <Button width="64px" onClick={() => handleMainImageUploadButton()}>올리기</Button>}
+          {!imageFile && <Button width="64px" onClick={() => handleMainImageUploadButton()}>업로드</Button>}
           {imageFile && <p>{imageFile.name}</p>}
           {/* TODO: 삭제 버튼 */}
         </Li>
@@ -151,7 +151,7 @@ const Editor = () => {
         yes={() => setModal('')} 
       />}
       {modal === 'image' && <ConfirmModal 
-        text="대표 이미지를 선택해야 합니다."
+        text="대표 이미지를 업로드해야 합니다."
         yes={() => setModal('')} 
       />}
       {modal === 'price' && <ConfirmModal 
