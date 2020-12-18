@@ -6,9 +6,10 @@ import getImageURL from '../../helper/getImageURL';
 import ImageViewer from '../common/ImageViewer';
 import Button from '../common/Button';
 import BlankItem from '../ItemDetail/BlankItem';
+import EditMenu from '../ItemDetail/EditMenu';
 import styles from './ItemDetail.module.scss';
 
-const Image = ({ url }) => {
+const Image = ({ isEditMenu = true, url, name }) => {
   const [isLarge, setIsLarge] = useState(false);
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ const Image = ({ url }) => {
           style={{backgroundImage: `url('${url}')`}}
           onClick={enlargeImage}
         />
+        {isEditMenu && <EditMenu name={name} />}
         {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
       </div>
     </article>
@@ -65,7 +67,7 @@ const ItemDetail = () => {
 
   return ( 
     <section className={styles.item}>
-      <Image url={getImageURL(category + '/' + mainImage)}/>
+      <Image isEditMenu={false} url={getImageURL(category + '/' + mainImage)}/>
       <article className={styles.text}>
         <p className={styles.title}>{title}</p>
         <div className={styles.description}>{replaceToP(description)}</div>
@@ -76,7 +78,7 @@ const ItemDetail = () => {
       </article>
       <BlankItem category={category} id={id} subImages={subImages} />
       {subImagesArr && subImagesArr.map((subImage, index) => (
-        <Image url={getImageURL(category + '/' + subImage)} key={index}/>
+        <Image url={getImageURL(category + '/' + subImage)} name={subImage} key={index}/>
       ))}
     </section>
   );
