@@ -9,7 +9,7 @@ const Item = ({ id, title, description, price, mainImage, category, onClick, isE
       <div className={styles.imageWrap}>
         <div
           className={styles.image} 
-          style={{backgroundImage: `url('${getImageURL(mainImage, category)}')`}}
+          style={{ backgroundImage: `url('${getImageURL(mainImage, category)}')` }}
           onClick={onClick}
         />
         {isEditMenu && <EditMenu category={category} id={id} />}
