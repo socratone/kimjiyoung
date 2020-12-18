@@ -50,6 +50,7 @@ const ItemDetail = () => {
   }
 
   const replaceToP = text => {
+    if (!text) return null;
     const texts = text.split('\n');
     return texts.map((text, i) => <p key={i}>{text}</p>);
   }
@@ -73,7 +74,7 @@ const ItemDetail = () => {
           {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
         </div>
       </article>
-      <BlankItem category={category} id={id} />
+      <BlankItem category={category} id={id} subImages={subImages} />
       {subImagesArr && subImagesArr.map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} key={index}/>
       ))}
