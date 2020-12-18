@@ -1,11 +1,11 @@
 import AWS from 'aws-sdk';
 
-const putImageFile = async (file, category) => {  
-  const albumBucketName = process.env.REACT_APP_S3_BUCKET_NAME;
-  const region = 'ap-northeast-2';
-  const accessKeyId = process.env.REACT_APP_S3_KEY_ID;
-  const secretAccessKey = process.env.REACT_APP_S3_SECRET_KEY;
+const albumBucketName = process.env.REACT_APP_S3_BUCKET_NAME;
+const region = 'ap-northeast-2';
+const accessKeyId = process.env.REACT_APP_S3_KEY_ID;
+const secretAccessKey = process.env.REACT_APP_S3_SECRET_KEY;
 
+const putImageFile = async (file, category) => {  
   AWS.config.update({
     region,
     accessKeyId,
@@ -33,4 +33,27 @@ const putImageFile = async (file, category) => {
   );
 };
 
-export { putImageFile };
+const listImageFiles = path => {
+  return new Promise((resolve, reject) => {
+    AWS.config.update({
+      region,
+      accessKeyId,
+      secretAccessKey
+    });
+  
+    const s3 = new AWS.S3({
+      apiVersion: '2006-03-01',
+      params: { Bucket: albumBucketName }
+    });
+  
+    s3.listObjects({ Delimiter: path }, function(err, data) {
+      if (err) {
+        console.log('There was an error listing your albums: ' + err.message);
+        reject({ error: { message: err.message }});
+      }
+      resolve(data.Contents);
+    });
+  });
+};
+
+export { putImageFile, listImageFiles };

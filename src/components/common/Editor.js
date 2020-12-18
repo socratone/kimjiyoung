@@ -7,7 +7,7 @@ import YesNoModal from './YesNoModal';
 import ConfirmModal from './ConfirmModal';
 import postItem from '../../api/postItem';
 import getSacredThings from '../../api/getSacredThings';
-import { putImageFile } from '../../api/imageFile';
+import { putImageFile, listImageFiles } from '../../api/imageFile';
 import styles from './Editor.module.scss';
 
 const Li = ({ children }) => (
@@ -98,6 +98,16 @@ const Editor = () => {
     // TODO: indicator
     const imageFile = file.current.files[0];
     if (!imageFile) return;
+
+    // 같은 이름의 파일이 있는지 확인
+    const s3Files = await listImageFiles(`/sacred-things/${category}`);
+    if (s3Files.error) {
+      setMessage(s3Files.error.message);
+      return setModal('message');
+    }
+    const [sameFile] = s3Files.filter(file => file.Key === `sacred-things/${category}/${imageFile.name}`);
+    if (sameFile) return setModal('same-image');
+    
     const result = await putImageFile(imageFile, category);
     if (result.error) {
       setMessage(result.error.message);
@@ -154,6 +164,10 @@ const Editor = () => {
       />}
       {modal === 'image' && <ConfirmModal 
         text="대표 이미지를 업로드해야 합니다."
+        yes={() => setModal('')} 
+      />}
+      {modal === 'same-image' && <ConfirmModal 
+        text="같은 이름의 이미지 파일이 이미 존재합니다.\다른 이름으로 업로드해 주세요."
         yes={() => setModal('')} 
       />}
       {modal === 'price' && <ConfirmModal 
