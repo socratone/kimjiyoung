@@ -5,6 +5,7 @@ import { activateNav, disableNav } from '../../store/isNav';
 import getImageURL from '../../helper/getImageURL';
 import ImageViewer from '../common/ImageViewer';
 import Button from '../common/Button';
+import BlankItem from '../ItemDetail/BlankItem';
 import styles from './ItemDetail.module.scss';
 
 const Image = ({ url }) => {
@@ -72,6 +73,7 @@ const ItemDetail = () => {
           {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
         </div>
       </div>
+      <BlankItem category={category} id={id} />
       {subImagesArr && subImagesArr.map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} key={index}/>
       ))}
