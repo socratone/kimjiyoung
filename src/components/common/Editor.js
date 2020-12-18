@@ -92,50 +92,47 @@ const Editor = () => {
     } else if (price.length > 0 && !Number(price)) {
       createModal('confirm', '가격에는 0을 제외한 숫자만 입력할 수 있습니다.');
       return false;
-    } else if (!imageFile) {
-      createModal('confirm', '대표 이미지를 업로드해야 합니다.');
+    } else if (!inputFile.current.files[0]) {
+      createModal('confirm', '대표 이미지를 선택해야 합니다.');
       return false;
     }
     return true;
   };
   
   const handlePostButton = async () => {
-    if (!validate()) return;
-    const result = await postItem({ title, description, price, category, storeLink, imageFile });
-    if (result.error) {
-      createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
-    } else {
-      const result = await getSacredThings();
-      if (result.error) {
-        return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
-      }
-      dispatch(setItems(result));
-      history.goBack();
-    }
-  };
-
-  const handleEditButton = async () => {
-    // TODO
-  };
-
-  const handleMainImageUploadButton = async () => {
     // TODO: indicator
-    const file = inputFile.current.files[0];
-    if (!file) return;
+    if (!validate()) return;
 
-    // 같은 이름의 파일이 있는지 확인
+    // 같은 이름의 이미지 파일이 S3에 있는지 확인
     const s3Files = await listImageFiles(`/sacred-things/${category}`);
     if (s3Files.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + s3Files.error.message);
     }
+    const file = inputFile.current.files[0];
     const [sameFile] = s3Files.filter(s3File => s3File.Key === `sacred-things/${category}/${file.name}`);
-    if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\다른 이름으로 업로드해 주세요.');
+    if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\\파일 이름을 다른 이름으로 수정하거나\\다른 이미지 파일을 선택해 주세요.');
     
+    // 문자 데이터 업로드
+    const result2 = await postItem({ title, description, price, category, storeLink, imageFileName: file.name });
+    if (result2.error) {
+      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result2.error.message);
+    }
+    const result3 = await getSacredThings();
+    if (result3.error) {
+      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result3.error.message);
+    }
+    dispatch(setItems(result3));
+
+    // S3에 이미지 파일 업로드
     const result = await putImageFile(file, category, file.name);
     if (result.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
     }
-    setImageFile({ name: file.name });
+    history.goBack();
+  };
+
+  const handleEditButton = async () => {
+    // TODO
   };
 
   const handleMainImageChangeButton = async () => {
@@ -179,7 +176,6 @@ const Editor = () => {
         <Li>
           <p>대표 이미지*</p>
           <div className={styles.mainImageInputWrap}>
-            {!imageFile && <Button width="64px" marginRight="8px" onClick={() => handleMainImageUploadButton()}>업로드</Button>}
             {imageFile && <Button width="64px" marginRight="8px" onClick={() => handleMainImageChangeButton()}>바꾸기</Button>}
             {imageFile && <span style={{ marginRight: "8px" }}>{imageFile.name}</span>}
             <input ref={inputFile} className={styles.mainImageInput} type="file" accept="image/png, image/jpeg"/>

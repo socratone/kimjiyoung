@@ -1,6 +1,6 @@
 const url = process.env.REACT_APP_API_URL;
 
-const postItem = async ({ title, description, price, category, storeLink, imageFile }) => {
+const postItem = async ({ title, description, price, category, storeLink, imageFileName }) => {
   const headers = new Headers();
   const token = localStorage.getItem('token')
   headers.append('x-auth-token', token);
@@ -13,7 +13,7 @@ const postItem = async ({ title, description, price, category, storeLink, imageF
       price, 
       category, 
       storeLink, 
-      imageFileName: imageFile.name 
+      imageFileName
     });
 
     const res = await fetch(url + '/api/item', {
