@@ -43,7 +43,13 @@
   margin: 8px 0;
 }
 
+.purchaseWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .price {
+  display: flex;
+  align-items: center;
   font-size: 14px;
-  align-self: flex-end;
 }

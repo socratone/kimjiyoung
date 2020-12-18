@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { activateNav, disableNav } from '../../store/isNav';
 import getImageURL from '../../helper/getImageURL';
 import ImageViewer from '../common/ImageViewer';
+import Button from '../common/Button';
 import styles from './ItemDetail.module.scss';
 
 const Image = ({ url }) => {
@@ -50,9 +51,13 @@ const ItemDetail = () => {
     return texts.map((text, i) => <p key={i}>{text}</p>);
   }
 
-  const { title, description, price, mainImage, subImages } = getCurrentItem();
+  const { title, description, smartStore, price, mainImage, subImages } = getCurrentItem();
   let subImagesArr;
   if (subImages) subImagesArr = subImages.split(',');
+
+  const goPurchaseSite = () => {
+    window.open(smartStore);
+  };
 
   return ( 
     <section className={styles.item}>
@@ -60,7 +65,10 @@ const ItemDetail = () => {
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
         <div className={styles.description}>{replaceToP(description)}</div>
-        {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
+        <div className={styles.purchaseWrap}>
+          {smartStore && <Button width="96px" onClick={() => goPurchaseSite()}>구매하러가기</Button>}
+          {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
+        </div>
       </div>
       {subImagesArr && subImagesArr.map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} key={index}/>
