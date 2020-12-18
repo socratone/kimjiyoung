@@ -45,6 +45,11 @@ const ItemDetail = () => {
     return item;
   }
 
+  const replaceToP = text => {
+    const texts = text.split('\n');
+    return texts.map((text, i) => <p key={i}>{text}</p>);
+  }
+
   const { title, description, price, mainImage, subImages } = getCurrentItem();
   let subImagesArr;
   if (subImages) subImagesArr = subImages.split(',');
@@ -54,7 +59,7 @@ const ItemDetail = () => {
       <Image url={getImageURL(category + '/' + mainImage)}/>
       <div className={styles.text}>
         <p className={styles.title}>{title}</p>
-        <p className={styles.description}>{description}</p>
+        <div className={styles.description}>{replaceToP(description)}</div>
         {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
       </div>
       {subImagesArr && subImagesArr.map((subImage, index) => (

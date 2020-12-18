@@ -56,7 +56,7 @@ const Editor = () => {
     if (id && sacredThings[category]) {
       const { title, description, price, smartStore, mainImage } = getItemById(id);
       title && setTitle(title);
-      description && setDescription(description);
+      description && setDescription(description.replace('\\g', 'br'));
       price && setPrice(price);
       smartStore && setStoreLink(smartStore);
       mainImage && setImageFile({ name: mainImage })
@@ -113,7 +113,8 @@ const Editor = () => {
     if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\\파일 이름을 다른 이름으로 수정하거나\\다른 이미지 파일을 선택해 주세요.');
     
     // 문자 데이터 업로드
-    const result2 = await postItem({ title, description, price, category, storeLink, imageFileName: file.name });
+    const sentence = description.replace(/\n/g, '\n');
+    const result2 = await postItem({ title, description: sentence, price, category, storeLink, imageFileName: file.name });
     if (result2.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + result2.error.message);
     }
@@ -146,7 +147,8 @@ const Editor = () => {
     }
 
     // 문자 데이터 수정 업로드
-    const result = await putItem(id, { title, description, price, storeLink });
+    const sentence = description.replace(/\n/g, '\n');
+    const result = await putItem(id, { title, description: sentence, price, storeLink });
     if (result.error) {
       return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
     }
