@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { removeItem } from '../../store/sacredThings';
 import deleteItem from '../../api/deleteItem';
 import YesNoModal from './YesNoModal';
@@ -9,8 +10,16 @@ const EditMenu = ({ category, id }) => {
   const dispatch = useDispatch();
   const account = useSelector(state => state.entities.user.account);
   const [modal, setModal] = useState('');
+  const history = useHistory();
 
-  const handleRemoveButtonClick = () => {
+  const handleEditButtonClick = () => {
+    history.push({
+      pathname: '/editor',
+      state: { category, id }
+    });
+  };
+
+  const handleTrashButtonClick = () => {
     setModal('remove');
   };
 
@@ -18,14 +27,11 @@ const EditMenu = ({ category, id }) => {
     return ( 
       <>
         <div className={styles.wrap}>
-          <p className={styles.icon}>
-            <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
+          <p className={styles.icon} onClick={() => handleEditButtonClick()}>
+            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
           </p>
-          <p className={styles.icon} onClick={() => handleRemoveButtonClick()}>
-            <i className="fa fa-minus" aria-hidden="true"></i>
-          </p>
-          <p className={styles.icon}>
-            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          <p className={styles.icon} onClick={() => handleTrashButtonClick()}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
           </p>
         </div> 
 
