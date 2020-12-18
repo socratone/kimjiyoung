@@ -25,7 +25,6 @@ const postItem = async ({ title, description, price, category, storeLink, imageF
 
     const result = await res.json();
     if (res.status === 200) {
-      // TODO: 사진을 올린다.
       return result;
     } else if (res.status === 500) {
       return { error: result.error };
