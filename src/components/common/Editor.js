@@ -29,8 +29,7 @@ const Editor = () => {
   const [price, setPrice] = useState('');
   const [storeLink, setStoreLink] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [modal, setModal] = useState('');
-  const [message, setMessage] = useState('');
+  const [modal, setModal] = useState(null);
 
   const file = useRef(null);
 
@@ -49,6 +48,8 @@ const Editor = () => {
     }
   };
 
+  // TODO: 등록 버튼을 누르지 않고 다른 페이지로 넘어갈 경우 업로드한 이미지 파일 삭제 요청
+  
   useEffect(() => {
     if (id && sacredThings[category]) {
       const { title, description, price, smartStore } = getItemById(id);
@@ -59,15 +60,39 @@ const Editor = () => {
     }
   }, [sacredThings]);
 
+  const createModal = (kind, message) => {
+    setModal({ kind, message });
+  };
+
+  const showModal = () => {
+    if (!modal) return null;
+    if (modal.kind === 'confirm') {
+      return (
+        <ConfirmModal 
+          text={modal.message}
+          yes={() => setModal(null)} 
+        />
+      );
+    } else if (modal.kind === 'yes-no') {
+      return (
+        <YesNoModal 
+          text={modal.message}
+          yes={() => history.goBack()} 
+          no={() => setModal(null)} 
+        />
+      );
+    }
+  };
+
   const validate = () => {
     if (title.length < 1) {
-      setModal('untitled');
+      createModal('confirm', '제목을 입력해야 합니다.');
       return false;
     } else if (price.length > 0 && !Number(price)) {
-      setModal('price');
+      createModal('confirm', '가격에는 0을 제외한 숫자만 입력할 수 있습니다.');
       return false;
     } else if (!imageFile) {
-      setModal('image');
+      createModal('confirm', '대표 이미지를 업로드해야 합니다.');
       return false;
     }
     return true;
@@ -77,13 +102,11 @@ const Editor = () => {
     if (!validate()) return;
     const result = await postItem({ title, description, price, category, storeLink, imageFile });
     if (result.error) {
-      setMessage(result.error.message);
-      setModal('message');
+      createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
     } else {
       const result = await getSacredThings();
       if (result.error) {
-        setMessage(result.error.message);
-        return setModal('message');
+        return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
       }
       dispatch(setItems(result));
       history.goBack();
@@ -102,16 +125,14 @@ const Editor = () => {
     // 같은 이름의 파일이 있는지 확인
     const s3Files = await listImageFiles(`/sacred-things/${category}`);
     if (s3Files.error) {
-      setMessage(s3Files.error.message);
-      return setModal('message');
+      return createModal('confirm', '다음 에러가 발생했습니다.\\' + s3Files.error.message);
     }
     const [sameFile] = s3Files.filter(file => file.Key === `sacred-things/${category}/${imageFile.name}`);
-    if (sameFile) return setModal('same-image');
+    if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\다른 이름으로 업로드해 주세요.');
     
     const result = await putImageFile(imageFile, category);
     if (result.error) {
-      setMessage(result.error.message);
-      return setModal('message');
+      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
     }
     setImageFile(imageFile);
   };
@@ -154,38 +175,11 @@ const Editor = () => {
         <div className={styles.buttonWrap}>
           {!id && <Button width="64px" onClick={() => handlePostButton()} marginRight="8px">등록</Button>}
           {id && <Button width="64px" onClick={() => handleEditButton()} marginRight="8px">수정</Button>}
-          <Button width="64px" onClick={() => setModal('cancel')}>취소</Button>
+          <Button width="64px" onClick={() => createModal('yes-no', '작성한 내용이 지워집니다.\\정말로 취소하시겠습니까?')}>취소</Button>
         </div>
       </ul>
 
-      {modal === 'untitled' && <ConfirmModal 
-        text="제목을 입력해야 합니다."
-        yes={() => setModal('')} 
-      />}
-      {modal === 'image' && <ConfirmModal 
-        text="대표 이미지를 업로드해야 합니다."
-        yes={() => setModal('')} 
-      />}
-      {modal === 'same-image' && <ConfirmModal 
-        text="같은 이름의 이미지 파일이 이미 존재합니다.\다른 이름으로 업로드해 주세요."
-        yes={() => setModal('')} 
-      />}
-      {modal === 'price' && <ConfirmModal 
-        text="가격에는 0을 제외한 숫자만 입력할 수 있습니다."
-        yes={() => setModal('')} 
-      />}
-      {modal === 'message' && <ConfirmModal 
-        text={'다음 에러가 발생했습니다.\\' + message}
-        yes={() =>{
-          setModal('');
-          setMessage('');
-        }} 
-      />}
-      {modal === 'cancel' && <YesNoModal 
-        text="작성한 내용이 지워집니다.\정말로 취소하시겠습니까?"
-        yes={() => history.goBack()} 
-        no={() => setModal('')} 
-      />}
+      {showModal()}
     </>
   );
 }
