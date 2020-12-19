@@ -56,7 +56,7 @@ const Editor = () => {
     if (id && sacredThings[category]) {
       const { title, description, price, smartStore, mainImage } = getItemById(id);
       title && setTitle(title);
-      description && setDescription(description.replace('\\g', 'br'));
+      description && setDescription(description);
       price && setPrice(price);
       smartStore && setStoreLink(smartStore);
       mainImage && setImageFile({ name: mainImage })
