@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { putHomeImageFile } from '../../api/imageFile';
 import Button from '../common/Button';
+import ConfirmModal from '../common/ConfirmModal';
 import styles from './Home.module.scss';
 
 const url = process.env.REACT_APP_S3_URL;
@@ -9,11 +10,23 @@ const url = process.env.REACT_APP_S3_URL;
 const Home = () => {
   const account = useSelector(state => state.entities.user.account);
   const [imageURI, setImageURI] = useState('');
+  const [modal, setModal] = useState(null)
   const inputFile = useRef(null);
 
   useEffect(() => {
     setImageURI(url + '/home/background.png');
   }, []);
+
+  const createModal = message => {
+    setModal({ message });
+  };
+
+  const showModal = () => (
+    <ConfirmModal 
+      text={modal.message}
+      yes={() => setModal(null)} 
+    />
+  );
   
   const previewImageFile = ({ target }) => {
     if (target.files && target.files[0]) {
@@ -27,14 +40,14 @@ const Home = () => {
 
   const handleUpload = async () => {
     const file = inputFile.current.files[0];
-    if (!file) return alert('이미지 파일을 선택해야 합니다.');
+    if (!file) return createModal('이미지 파일을 선택해야 합니다.');
 
     // S3에 이미지 파일 업로드
     const result = await putHomeImageFile(file);
-    if (result.error) return alert(result.error.message);
+    if (result.error) return createModal(result.error.message);
 
     setImageURI(url + '/home/background.png');
-    alert('이미지 파일 업로드를 성공했습니다.')
+    createModal('이미지 파일 업로드를 성공했습니다.')
   };
 
   return ( 
@@ -60,6 +73,7 @@ const Home = () => {
           </Button>
         </div>}
       </section>
+      {modal && showModal()}
     </>
   );
 }
