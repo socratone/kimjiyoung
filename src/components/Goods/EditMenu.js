@@ -41,24 +41,20 @@ const EditMenu = ({ category, id }) => {
     />
   );
 
-  // if (account === 'admin') {
-    return ( 
-      <>
-        <div className={styles.wrap}>
-          <p className={styles.icon} onClick={() => handleEditButtonClick()}>
-            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-          </p>
-          <p className={styles.icon} onClick={() => handleTrashButtonClick()}>
-            <i className="fa fa-trash-o" aria-hidden="true"></i>
-          </p>
-        </div> 
+  return ( 
+    <>
+      <div className={styles.wrap}>
+        <p className={styles.icon} onClick={() => handleEditButtonClick()}>
+          <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </p>
+        <p className={styles.icon} onClick={() => handleTrashButtonClick()}>
+          <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </p>
+      </div> 
 
-        {modal === 'remove' && showRemoveModal()}
-      </>
-    );
-  // }
-
-  return null;
+      {modal === 'remove' && showRemoveModal()}
+    </>
+  );
 }
  
 export default EditMenu;
