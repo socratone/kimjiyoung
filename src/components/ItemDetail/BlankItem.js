@@ -26,15 +26,12 @@ const BlankItem = ({ subImages }) => {
     setModal({ message });
   };
 
-  const showModal = () => {
-    if (!modal) return null;
-    return (
-      <ConfirmModal 
-        text={modal.message}
-        yes={() => setModal(null)} 
-      />
-    );
-  }
+  const showModal = () => (
+    <ConfirmModal 
+      text={modal.message}
+      yes={() => setModal(null)} 
+    />
+  );
 
   const previewImageFile = ({ target }) => {
     if (target.files && target.files[0]) {
@@ -114,7 +111,7 @@ const BlankItem = ({ subImages }) => {
           </div>
         </div>
       </article> 
-      {showModal()}
+      {modal && showModal()}
     </>
   );
 }
