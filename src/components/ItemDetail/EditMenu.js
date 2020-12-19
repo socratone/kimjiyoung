@@ -10,7 +10,6 @@ import styles from './EditMenu.module.scss';
 
 const EditMenu = ({ name }) => {
   const { category, id } = useParams();
-  const account = useSelector(state => state.entities.user.account);
   const sacredThings = useSelector(state => state.entities.sacredThings);
   const [modal, setModal] = useState('');
   
@@ -60,7 +59,6 @@ const EditMenu = ({ name }) => {
           <i className="fa fa-trash-o" aria-hidden="true"></i>
         </p>
       </div> 
-
       {modal === 'remove' && showRemoveModal()}
     </>
   );

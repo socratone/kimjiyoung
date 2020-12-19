@@ -31,7 +31,8 @@ const Editor = () => {
   const [price, setPrice] = useState('');
   const [storeLink, setStoreLink] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [modal, setModal] = useState(null);
+  const [confirmModal, setConfirmModal] = useState(null);
+  const [yesNoModal, setYesNoModal] = useState(null);
 
   const inputFile = useRef(null);
 
@@ -63,36 +64,35 @@ const Editor = () => {
     }
   }, [sacredThings]);
 
-  const createModal = (kind, message) => {
-    setModal({ kind, message });
+  const createConfirmModal = message => {
+    setConfirmModal({ message });
   };
 
-  const showModal = () => {
-    if (!modal) return null;
-    if (modal.kind === 'confirm') {
-      return (
-        <ConfirmModal 
-          text={modal.message}
-          yes={() => setModal(null)} 
-        />
-      );
-    } else if (modal.kind === 'cancel') {
-      return (
-        <YesNoModal 
-          text={modal.message}
-          yes={() => history.goBack()} 
-          no={() => setModal(null)} 
-        />
-      );
-    }
-  };
+  const createYesNoModal = message => {
+    setYesNoModal({ message });
+  }
+
+  const showConfirmModal = () => (
+    <ConfirmModal 
+      text={confirmModal.message}
+      yes={() => setConfirmModal(null)} 
+    />
+  );
+    
+  const showYesNoModal = () => (
+    <YesNoModal 
+      text={yesNoModal.message}
+      yes={() => history.goBack()} 
+      no={() => setYesNoModal(null)} 
+    />  
+  );
 
   const validate = () => {
     if (title.length < 1) {
-      createModal('confirm', '제목을 입력해야 합니다.');
+      createConfirmModal('제목을 입력해야 합니다.');
       return false;
     } else if (price.length > 0 && !Number(price)) {
-      createModal('confirm', '가격에는 0을 제외한 숫자만 입력할 수 있습니다.');
+      createConfirmModal('가격에는 0을 제외한 숫자만 입력할 수 있습니다.');
       return false;
     }
     return true;
@@ -102,34 +102,34 @@ const Editor = () => {
     // TODO: indicator
     if (!validate()) return;
     const file = inputFile.current.files[0];
-    if (!file) return createModal('confirm', '대표 이미지를 선택해야 합니다.');
+    if (!file) return createConfirmModal('대표 이미지를 선택해야 합니다.');
 
     // 같은 이름의 이미지 파일이 S3에 있는지 확인
     const s3Files = await listImageFiles(`/sacred-things/${category}`);
     if (s3Files.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + s3Files.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + s3Files.error.message);
     }
     const [sameFile] = s3Files.filter(s3File => s3File.Key === `sacred-things/${category}/${file.name}`);
-    if (sameFile) return createModal('confirm', '같은 이름의 이미지 파일이 이미 존재합니다.\\파일 이름을 다른 이름으로 수정하거나\\다른 이미지 파일을 선택해 주세요.');
+    if (sameFile) return createConfirmModal('같은 이름의 이미지 파일이 이미 존재합니다.\\파일 이름을 다른 이름으로 수정하거나\\다른 이미지 파일을 선택해 주세요.');
     
     // 문자 데이터 업로드
     const sentence = description.replace(/\n/g, '\n');
     const result2 = await postItem({ title, description: sentence, price, category, storeLink, imageFileName: file.name });
     if (result2.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result2.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + result2.error.message);
     }
 
     // sacredThings 업데이트
     const result3 = await getSacredThings();
     if (result3.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result3.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + result3.error.message);
     }
     dispatch(setItems(result3));
 
     // S3에 이미지 파일 업로드
     const result = await putImageFile(file, category, file.name);
     if (result.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + result.error.message);
     }
     history.goBack();
   };
@@ -142,7 +142,7 @@ const Editor = () => {
     if (file) {
       const result = await putImageFile(file, category, imageFile.name);
       if (result.error) {
-        return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
+        return createConfirmModal('다음 에러가 발생했습니다.\\' + result.error.message);
       }
     }
 
@@ -150,13 +150,13 @@ const Editor = () => {
     const sentence = description.replace(/\n/g, '\n');
     const result = await putItem(id, { title, description: sentence, price, storeLink });
     if (result.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + result.error.message);
     }
 
     // sacredThings 업데이트
     const result2 = await getSacredThings();
     if (result2.error) {
-      return createModal('confirm', '다음 에러가 발생했습니다.\\' + result2.error.message);
+      return createConfirmModal('다음 에러가 발생했습니다.\\' + result2.error.message);
     }
     dispatch(setItems(result2));
     history.goBack();
@@ -198,11 +198,12 @@ const Editor = () => {
         <div className={styles.buttonWrap}>
           {!id && <Button width="64px" onClick={() => handlePostButton()} marginRight="8px">등록</Button>}
           {id && <Button width="64px" onClick={() => handleEditButton()} marginRight="8px">수정</Button>}
-          <Button width="64px" onClick={() => createModal('cancel', '작성한 내용이 지워집니다.\\정말로 취소하시겠습니까?')}>취소</Button>
+          <Button width="64px" onClick={() => createYesNoModal('작성한 내용이 지워집니다.\\정말로 취소하시겠습니까?')}>취소</Button>
         </div>
       </ul>
 
-      {showModal()}
+      {confirmModal && showConfirmModal()}
+      {yesNoModal && showYesNoModal()}
     </>
   );
 }
