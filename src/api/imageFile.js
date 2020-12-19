@@ -80,4 +80,32 @@ const deleteImageFile = key => {
   });
 };
 
-export { putImageFile, listImageFiles, deleteImageFile };
+const putHomeImageFile = async file => {  
+  AWS.config.update({
+    region,
+    accessKeyId,
+    secretAccessKey
+  }); 
+  
+  const upload = new AWS.S3.ManagedUpload({
+    params: {
+      Bucket: albumBucketName,
+      Key: `home/background.png`,
+      Body: file,
+      ACL: "public-read"
+    }
+  });
+  
+  const promise = upload.promise();
+
+  return promise.then((data) => {
+      console.log("Successfully uploaded photo.");
+      return { data };
+    },
+    (err) => {
+      return { error: { message: err.message }};
+    }
+  );
+};
+
+export { putImageFile, listImageFiles, deleteImageFile, putHomeImageFile };
