@@ -28,7 +28,6 @@ const EditMenu = ({ category, id }) => {
     const result = await deleteItem(id);
     if (result.error) return alert(result.error.message);
     const [item] = sacredThings[category].items.filter(item => item.id === id);
-    console.log('key:', `sacred-things/${category}/${item.mainImage}`)
     const result2 = await deleteImageFile(`sacred-things/${category}/${item.mainImage}`);
     if (result2.error) return alert(result2.error.message);
     dispatch(removeItem({ category, id }));

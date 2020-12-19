@@ -35,7 +35,6 @@ const Signin = () => {
     setInfo(message);
     if (ok) {
       const user = getUserByToken();
-      console.log('user:', user)
       dispatch(setUser(user));
       history.goBack();
     };

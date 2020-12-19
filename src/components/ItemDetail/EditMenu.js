@@ -31,7 +31,6 @@ const EditMenu = ({ name }) => {
     // 데이터 베이스 변경
     const remainImages = subImagesArr.filter(targetImg => targetImg !== name);
     const subImages = remainImages.join(',');
-    console.log('subImages:', subImages)
     const result3 = await putItemImages(id, subImages);
     if (result3.error) {
       return alert(result3.error.message);

@@ -39,7 +39,6 @@ const Signup = () => {
   const handleSignup = async () => {
     if(!isValidInput(email, password, password2, name)) return;
     const { ok, message } = await postSignup(email, password, name);
-    console.log('message:', message)
     setInfo(message);
     if (ok) setIsSignup(true);
   };
