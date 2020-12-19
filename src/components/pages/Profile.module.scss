@@ -4,6 +4,7 @@
   display: grid;
   gap: $items-gap;
   grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  margin-bottom: 32px;
 }
 
 .imageWrap {
