@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../store/user';
 import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
 import LeftNav from './nav/LeftNav';
@@ -18,6 +19,7 @@ import Editor from './common/Editor';
 import ItemDetail from './pages/ItemDetail';
 import { setItems } from '../store/sacredThings';
 import getSacredThings from '../api/getSacredThings';
+import getUserByToken from '../helper/getUserByToken';
 import styles from './Routes.module.scss';
 
 const Routes = () => {
@@ -31,6 +33,9 @@ const Routes = () => {
       dispatch(setItems(result));
     }
     fetchData();
+
+    const user = getUserByToken();
+    if (user.id) dispatch(setUser(user));
   }, []);
 
   return ( 
