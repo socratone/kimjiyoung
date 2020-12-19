@@ -1,8 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styles from './BlankItem.module.scss';
 
-const BlankItem = ({ category }) => {
+const BlankItem = () => {
+  const { category } = useParams();
   const history = useHistory();
 
   const handleClick = () => {

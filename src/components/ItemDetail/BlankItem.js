@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { setItems } from '../../store/sacredThings';
 import { putImageFile, listImageFiles } from '../../api/imageFile';
 import putItemImages from '../../api/putItemImages';
@@ -8,7 +9,8 @@ import ConfirmModal from '../common/ConfirmModal';
 import styles from './BlankItem.module.scss';
 import { useDispatch } from 'react-redux';
 
-const BlankItem = ({ category, id, subImages }) => {
+const BlankItem = ({ subImages }) => {
+  const { category, id } = useParams();
   const [isAddClick, setIsAddClick] = useState(false);
   const [modal, setModal] = useState(null);
   const [imageURI, setImageURI] = useState('');
