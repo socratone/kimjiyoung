@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { activateNav, disableNav } from '../../store/isNav';
 import getImageURL from '../../helper/getImageURL';
+import convertToDOMText from '../../helper/convertToDOMText';
 import ImageViewer from '../common/ImageViewer';
 import Button from '../common/Button';
 import BlankItem from '../ItemDetail/BlankItem';
@@ -41,45 +42,56 @@ const Image = ({ isEditMenu = true, url, name }) => {
 
 const ItemDetail = () => {
   const { category, id } = useParams();
-  const sacredThings = useSelector(state => state.entities.sacredThings); 
-  const account = useSelector(state => state.entities.user.account);
-  
-  if (!sacredThings[category]) return null;
+  const sacredThings = useSelector(state => state.entities.sacredThings);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [smartStore, setSmartStore] = useState('');
+  const [price, setPrice] = useState('');
+  const [mainImage, setMainImage] = useState('');
+  const [subImages, setSubImages] = useState('');
 
-  const getCurrentItem = () => {
-    const [ item ] = sacredThings[category].items.filter(item => {
+  const account = useSelector(state => state.entities.user.account);
+  const descElement = useRef(null);
+
+  // URL로 direct 진입시 서버에서 sacredThings를 불러오고 나서 state 설정
+  useEffect(() => {
+    if (!sacredThings[category]) return;
+    const [item] = sacredThings[category].items.filter(item => {
       return item.id.toString() === id;
     });
-    return item;
-  }
-
-  const replaceToP = text => {
-    if (!text) return null;
-    const texts = text.split('\n');
-    return texts.map((text, i) => <p key={i}>{text}</p>);
-  }
-
-  const { title, description, smartStore, price, mainImage, subImages } = getCurrentItem();
-  let subImagesArr;
-  if (subImages) subImagesArr = subImages.split(',');
-
+    if (!item) return;
+    const { title, description, smartStore, price, mainImage, subImages } = item;
+    setTitle(title);
+    setDescription(description);
+    setSmartStore(smartStore);
+    setPrice(price);
+    setMainImage(mainImage);
+    setSubImages(subImages);
+  }, [sacredThings])
+  
+  useEffect(() => {
+    if (!descElement.current) return;
+    const convertedText = convertToDOMText(description);
+    descElement.current.innerHTML = convertedText;
+  }, [descElement, description]);
+  
   const goPurchaseSite = () => {
     window.open(smartStore);
   };
-
+  
   return ( 
     <section className={styles.item}>
-      <Image isEditMenu={false} url={getImageURL(category + '/' + mainImage)}/>
+      {mainImage && <Image isEditMenu={false} url={getImageURL(category + '/' + mainImage)}/>}
       <article className={styles.text}>
         <p className={styles.title}>{title}</p>
-        <div className={styles.description}>{replaceToP(description)}</div>
+        <div className={styles.description} ref={descElement} />
         <div className={styles.purchaseWrap}>
           {smartStore && <Button width="96px" onClick={() => goPurchaseSite()}>구매하러가기</Button>}
           {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
         </div>
       </article>
       {account === 'admin' && <BlankItem subImages={subImages} />}
-      {subImagesArr && subImagesArr.map((subImage, index) => (
+      {subImages && subImages.split(',').map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} name={subImage} key={index}/>
       ))}
     </section>
