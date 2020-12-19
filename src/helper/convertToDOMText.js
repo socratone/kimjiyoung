@@ -1,4 +1,5 @@
 const convertToDOMText = text => {
+  if (!text) return '';
   let newText = '';
   for (let i = 0; i < text.length; i++) {
     if (text[i] === ' ') newText += '&nbsp;';
