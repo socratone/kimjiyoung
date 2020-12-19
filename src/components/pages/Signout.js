@@ -12,7 +12,7 @@ const Signout = () => {
   const handleLogout = () => {
     localStorage.setItem('token', '');
     dispatch(removeUser());
-    history.push('/signin');
+    history.goBack();
   };
 
   return ( 
