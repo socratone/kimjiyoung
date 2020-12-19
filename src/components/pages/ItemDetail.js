@@ -1,44 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { activateNav, disableNav } from '../../store/isNav';
+import { useSelector } from 'react-redux';
 import getImageURL from '../../helper/getImageURL';
 import convertToDOMText from '../../helper/convertToDOMText';
-import ImageViewer from '../common/ImageViewer';
 import Button from '../common/Button';
 import BlankItem from '../ItemDetail/BlankItem';
-import EditMenu from '../ItemDetail/EditMenu';
+import Image from '../ItemDetail/Image';
 import styles from './ItemDetail.module.scss';
-
-const Image = ({ isEditMenu = true, url, name }) => {
-  const account = useSelector(state => state.entities.user.account);
-  const [isLarge, setIsLarge] = useState(false);
-  const dispatch = useDispatch();
-
-  const enlargeImage = () => {
-    dispatch(disableNav());
-    setIsLarge(true);
-  };
-  
-  const reduceImage = () => {
-    dispatch(activateNav());
-    setIsLarge(false);
-  };
-
-  return (
-    <article>
-      <div className={styles.imageWrap}>
-        <div
-          className={styles.image} 
-          style={{backgroundImage: `url('${url}')`}}
-          onClick={enlargeImage}
-        />
-        {isEditMenu && account === 'admin' && <EditMenu name={name} />}
-        {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
-      </div>
-    </article>
-  );
-};
 
 const ItemDetail = () => {
   const { category, id } = useParams();
