@@ -34,24 +34,24 @@ const BarsNav = () => {
           {userId && <li className={styles.li}>
             <Link to="/signout" onClick={() => removeNav()}>Signout</Link>
           </li>}
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
             <Link to="/item/statue">성상</Link>
           </li>
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
             <Link to="/item/cross">십자가</Link>
           </li>
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
             <Link to="/item/tools">기도소품</Link>
           </li>
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
           <a href="http://blog.naver.com/larahouse" target="_blank" rel="noreferrer">블로그</a>
           </li>
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
             <a href="https://www.instagram.com/lara_house" target="_blank" rel="noreferrer">
               <InstagramIcon size={14} />
             </a>
           </li>
-          <li className={styles.li}>
+          <li className={styles.li} onClick={() => removeNav()}>
             <a href="https://pf.kakao.com/_aCPLxl" target="_blank" rel="noreferrer">
               <KakaoIcon size={14} />
             </a>
