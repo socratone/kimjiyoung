@@ -9,7 +9,6 @@ import styles from './EditMenu.module.scss';
 
 const EditMenu = ({ category, id }) => {
   const dispatch = useDispatch();
-  const account = useSelector(state => state.entities.user.account);
   const sacredThings = useSelector(state => state.entities.sacredThings);
   const [modal, setModal] = useState('');
   const history = useHistory();

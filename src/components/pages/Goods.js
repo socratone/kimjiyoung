@@ -9,6 +9,7 @@ const Goods = () => {
   const { category } = useParams();
   const history = useHistory();
   const sacredThings = useSelector(state => state.entities.sacredThings);
+  const account = useSelector(state => state.entities.user.account);
 
   if (!sacredThings[category]) return null;
 
@@ -18,7 +19,7 @@ const Goods = () => {
     <>
       <p className={styles.title}>{capitalizeFirstLetter(category)}</p>
       <section className={styles.section}>
-        <BlankItem category={category} />
+        {account === 'admin' && <BlankItem />}
         {sacredThings[category].items.map(item => (
           <Item 
             {...item} 

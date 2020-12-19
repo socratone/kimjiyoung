@@ -10,6 +10,7 @@ import EditMenu from '../ItemDetail/EditMenu';
 import styles from './ItemDetail.module.scss';
 
 const Image = ({ isEditMenu = true, url, name }) => {
+  const account = useSelector(state => state.entities.user.account);
   const [isLarge, setIsLarge] = useState(false);
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ const Image = ({ isEditMenu = true, url, name }) => {
           style={{backgroundImage: `url('${url}')`}}
           onClick={enlargeImage}
         />
-        {isEditMenu && <EditMenu name={name} />}
+        {isEditMenu && account === 'admin' && <EditMenu name={name} />}
         {isLarge && <ImageViewer url={url} onClick={reduceImage} />}
       </div>
     </article>
@@ -41,6 +42,7 @@ const Image = ({ isEditMenu = true, url, name }) => {
 const ItemDetail = () => {
   const { category, id } = useParams();
   const sacredThings = useSelector(state => state.entities.sacredThings); 
+  const account = useSelector(state => state.entities.user.account);
   
   if (!sacredThings[category]) return null;
 
@@ -76,7 +78,7 @@ const ItemDetail = () => {
           {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
         </div>
       </article>
-      <BlankItem subImages={subImages} />
+      {account === 'admin' && <BlankItem subImages={subImages} />}
       {subImagesArr && subImagesArr.map((subImage, index) => (
         <Image url={getImageURL(category + '/' + subImage)} name={subImage} key={index}/>
       ))}
