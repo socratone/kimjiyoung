@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
-import isValidEmail from '../../helper/isValidEmail';
+import validateSignup from '../../validate/validateSignup';
 import postSignup from '../../api/postSignup';
+import schema from '../../validate/signup';
 import styles from './Signup.module.scss';
 
 const Signup = () => {
@@ -13,31 +14,14 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [isSignup, setIsSignup] = useState(false);
 
-  const isValidInput = (email, password, password2, name) => {
-    if (email.length < 1) {
-      setInfo('이메일을 입력해주세요.');
-      return false;
-    } else if (!isValidEmail(email)) {
-      setInfo('올바른 이메일을 입력하세요.');
-      return false;
-    } else if (password.length < 1 || password2.length < 1) {
-      setInfo('비밀번호를 입력해주세요.');
-      return false;
-    } else if (password.length < 8) {
-      setInfo('비밀번호는 8자 이상이어야 합니다.');
-      return false;
-    } else if (password !== password2) {
-      setInfo('비밀번호가 일치하지 않습니다.');
-      return false;
-    } else if (name.length < 1) {
-      setInfo('이름을 입력해주세요.');
-      return false;
-    }
-    return true;
-  };
-
   const handleSignup = async () => {
-    if(!isValidInput(email, password, password2, name)) return;
+    try {
+      validateSignup({ email, password, password2, name });
+      await schema.validateAsync({ email, password, password2, name });
+    } catch (error) {
+      return setInfo(error.message);
+    }
+
     const result = await postSignup(email, password, name);
     if (result.error) return alert(result.error.message)
     setInfo(`${result.email}로 회원가입을 완료 했습니다.`);
