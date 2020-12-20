@@ -22,11 +22,7 @@ const putItem = async (id, { title, description, price, storeLink }) => {
     });
 
     const result = await res.json();
-    if (res.status === 200) {
-      return result;
-    } else if (res.status === 500) {
-      return { error: result.error };
-    }
+    return result;
   } catch (error) {
     return { error };
   }
