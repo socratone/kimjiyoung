@@ -1,0 +1,28 @@
+.loadingBackground {
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  animation-name: rotate;
+  animation-timing-function: linear;
+  animation-duration: 3s;
+  animation-iteration-count: infinite; /* 반복 횟수 */
+}
+
+.icon {
+  fill: black;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}

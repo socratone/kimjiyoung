@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { putHomeImageFile } from '../../api/imageFile';
 import Button from '../common/Button';
 import ConfirmModal from '../common/ConfirmModal';
+import Loading from '../common/Loading';
 import styles from './Home.module.scss';
 
 const url = process.env.REACT_APP_S3_URL;
@@ -11,13 +12,20 @@ const Home = () => {
   const account = useSelector(state => state.entities.user.account);
   const [imageURI, setImageURI] = useState('');
   const [modal, setModal] = useState(null)
+  const [isLoading, setIsLoading] = useState(true);
   const inputFile = useRef(null);
 
   useEffect(() => {
     setImageURI(url + '/home/background.png');
+    setIsLoading(false);
   }, []);
 
+  const showLoading = () => (
+    <Loading size="48" />
+  );
+    
   const createModal = message => {
+    setIsLoading(false);
     setModal({ message });
   };
 
@@ -39,6 +47,8 @@ const Home = () => {
   };
 
   const handleUpload = async () => {
+    setIsLoading(true);
+
     const file = inputFile.current.files[0];
     if (!file) return createModal('이미지 파일을 선택해야 합니다.');
 
@@ -47,7 +57,7 @@ const Home = () => {
     if (result.error) return createModal(result.error.message);
 
     setImageURI(url + '/home/background.png');
-    createModal('이미지 파일 업로드를 성공했습니다.')
+    createModal('이미지 파일 업로드를 성공했습니다.');
   };
 
   return ( 
@@ -74,6 +84,7 @@ const Home = () => {
         </div>}
       </section>
       {modal && showModal()}
+      {isLoading && showLoading()}
     </>
   );
 }
