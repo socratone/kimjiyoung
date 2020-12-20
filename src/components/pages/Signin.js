@@ -36,7 +36,7 @@ const Signin = () => {
     if(!isValidInput(email, password)) return;
     const result = await postSignin(email, password);
     resetInput();
-    if (result.error) return alert(result.error.message);
+    if (result.error) return setInfo(result.error.message);
     localStorage.setItem('token', result.token);
     const user = getUserByToken();
     dispatch(setUser(user));
