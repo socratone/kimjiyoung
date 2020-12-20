@@ -13,12 +13,10 @@ const postSignin = async (email, password) => {
       redirect: 'follow'
     });
 
-    const { status, ok } = res;
-    const { message, token } = await res.json();
-    if (token) localStorage.setItem('token', token);
-    return { status, ok, message: message.toString() };
+    const result = await res.json();
+    return result;
   } catch (error) {
-    return { status: null, ok: false, message: error.toString() };
+    return { error };
   }
 };
 

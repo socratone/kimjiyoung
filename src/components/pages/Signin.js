@@ -27,17 +27,20 @@ const Signin = () => {
     return true;
   };
 
-  const handleLogin = async () => {
-    if(!isValidInput(email, password)) return;
-    const { ok, message } = await postSignin(email, password);
+  const resetInput = () => {
     setEmail('');
     setPassword('');
-    setInfo(message);
-    if (ok) {
-      const user = getUserByToken();
-      dispatch(setUser(user));
-      history.goBack();
-    };
+  };
+
+  const handleLogin = async () => {
+    if(!isValidInput(email, password)) return;
+    const result = await postSignin(email, password);
+    resetInput();
+    if (result.error) return alert(result.error.message);
+    localStorage.setItem('token', result.token);
+    const user = getUserByToken();
+    dispatch(setUser(user));
+    history.goBack();
   };
   
   return ( 
