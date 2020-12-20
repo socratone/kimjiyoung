@@ -28,60 +28,52 @@ const Signup = () => {
     setIsSignup(true);
   };
 
-  if (isSignup) {
-    return (
-      <ul className={styles.wrap}>
-        <li>
-          <p className={styles.text}>{info}</p>
-        </li>
-      </ul>
-    );
-  }
-
   return (
     <ul className={styles.wrap}>
       <li>
         <p className={styles.text}>{info}</p>
       </li>
-      <li>
-        <TextInput 
-          width="200px" 
-          type="text" 
-          placeholder="email"
-          value={email} 
-          onChange={({ target }) => setEmail(target.value)} 
-        />
-      </li>
-      <li>
-        <TextInput 
-          width="200px" 
-          type="password" 
-          placeholder="password"
-          value={password} 
-          onChange={({ target }) => setPassword(target.value)} 
-        />
-      </li>
-      <li>
-        <TextInput 
-          width="200px" 
-          type="password" 
-          placeholder="password 확인"
-          value={password2} 
-          onChange={({ target }) => setPassword2(target.value)} 
-        />
-      </li>
-      <li>
-        <TextInput 
-          width="200px" 
-          type="text" 
-          placeholder="name"
-          value={name} 
-          onChange={({ target }) => setName(target.value)} 
-        />
-      </li>
-      <li>
-        <Button width="100px" onClick={() => handleSignup()}>회원가입</Button>
-      </li>
+      {!isSignup && <>
+        <li>
+          <TextInput 
+            width="200px" 
+            type="text" 
+            placeholder="email"
+            value={email} 
+            onChange={({ target }) => setEmail(target.value)} 
+          />
+        </li>
+        <li>
+          <TextInput 
+            width="200px" 
+            type="password" 
+            placeholder="password"
+            value={password} 
+            onChange={({ target }) => setPassword(target.value)} 
+          />
+        </li>
+        <li>
+          <TextInput 
+            width="200px" 
+            type="password" 
+            placeholder="password 확인"
+            value={password2} 
+            onChange={({ target }) => setPassword2(target.value)} 
+          />
+        </li>
+        <li>
+          <TextInput 
+            width="200px" 
+            type="text" 
+            placeholder="name"
+            value={name} 
+            onChange={({ target }) => setName(target.value)} 
+          />
+        </li>
+        <li>
+          <Button width="100px" onClick={() => handleSignup()}>회원가입</Button>
+        </li>
+      </>}
     </ul> 
   );
 }
