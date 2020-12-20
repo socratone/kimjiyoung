@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { disableBars } from '../../store/isBars';
 import InstagramIcon from '../icon/InstagramIcon';
 import KakaoIcon from '../icon/KakaoIcon';
+import XIcon from '../icon/XIcon';
 import styles from './BarsNav.module.scss';
 
 const BarsNav = () => {
@@ -19,7 +20,7 @@ const BarsNav = () => {
       <div className={styles.nonNav} onClick={() => removeNav()}/>
       <nav className={styles.nav}>
         <button className={styles.xButton} onClick={() => removeNav()}>
-          <i className="fa fa-times" aria-hidden="true"></i>
+          <XIcon size={14} />
         </button>
         <ul className={styles.ul}>
           <li className={styles.li}>

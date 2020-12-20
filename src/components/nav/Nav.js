@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { activateBars } from '../../store/isBars';
+import MenuIcon from '../icon/MenuIcon';
 import styles from './Nav.module.scss';
 
 const Nav = () => {
@@ -20,7 +21,7 @@ const Nav = () => {
         <Link to="/">Kim ji young</Link>
       </div>
       <button className={styles.bars} onClick={barsClick}>
-        <i className="fa fa-bars" aria-hidden="true"></i>
+        <MenuIcon size={14} />
       </button>
       <ul className={styles.ul}>
         <li className={styles.li}>
