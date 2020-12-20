@@ -38,9 +38,10 @@ const Signup = () => {
 
   const handleSignup = async () => {
     if(!isValidInput(email, password, password2, name)) return;
-    const { ok, message } = await postSignup(email, password, name);
-    setInfo(message);
-    if (ok) setIsSignup(true);
+    const result = await postSignup(email, password, name);
+    if (result.error) return alert(result.error.message)
+    setInfo(`${result.email}로 회원가입을 완료 했습니다.`);
+    setIsSignup(true);
   };
 
   if (isSignup) {

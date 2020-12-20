@@ -13,11 +13,10 @@ const postSignup = async (email, password, name) => {
       redirect: 'follow'
     });
 
-    const { status, ok } = res;
-    const { message } = await res.json();
-    return { status, ok, message: message.toString() };
+    const result = await res.json();
+    return result;
   } catch (error) {
-    return { status: null, ok: false, message: error.toString() };
+    return { error };
   }
 };
 
