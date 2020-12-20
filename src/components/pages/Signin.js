@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/user';
 import Button from '../common/Button';
 import TextInput from '../common/TextInput';
 import postSignin from '../../api/postSignin';
 import getUserByToken from '../../helper/getUserByToken';
+import validateSignin from '../../validate/validateSignin';
+import schema from '../../validate/signin';
 import styles from './Signin.module.scss';
-import { useHistory } from 'react-router-dom';
 
 const Signin = () => {
   const [info, setInfo] = useState('페이지를 수정하려면 로그인 해주세요.');
@@ -16,24 +18,19 @@ const Signin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const isValidInput = (email, password) => {
-    if (email.length < 1) {
-      setInfo('이메일을 입력해주세요.');
-      return false;
-    } else if (password.length < 1) {
-      setInfo('비밀번호를 입력해주세요.');
-      return false;
-    }
-    return true;
-  };
-
   const resetInput = () => {
     setEmail('');
     setPassword('');
   };
 
   const handleLogin = async () => {
-    if(!isValidInput(email, password)) return;
+    try {
+      validateSignin({ email, password });
+      await schema.validateAsync({ email, password });
+    } catch (error) {
+      return setInfo(error.message);
+    }
+
     const result = await postSignin(email, password);
     resetInput();
     if (result.error) return setInfo(result.error.message);
