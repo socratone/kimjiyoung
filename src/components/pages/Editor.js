@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../../store/sacredThings';
-import Button from './Button';
-import YesNoModal from './YesNoModal';
-import ConfirmModal from './ConfirmModal';
+import Button from '../common/Button';
+import YesNoModal from '../common/YesNoModal';
+import ConfirmModal from '../common/ConfirmModal';
 import postItem from '../../api/postItem';
 import putItem from '../../api/putItem';
 
