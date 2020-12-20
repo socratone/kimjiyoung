@@ -5,6 +5,7 @@ import { setItems } from '../../store/sacredThings';
 import Button from '../common/Button';
 import YesNoModal from '../common/YesNoModal';
 import ConfirmModal from '../common/ConfirmModal';
+import Loading from '../common/Loading';
 import postItem from '../../api/postItem';
 import putItem from '../../api/putItem';
 
@@ -33,6 +34,7 @@ const Editor = () => {
   const [imageFile, setImageFile] = useState(null);
   const [confirmModal, setConfirmModal] = useState(null);
   const [yesNoModal, setYesNoModal] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputFile = useRef(null);
 
@@ -51,8 +53,6 @@ const Editor = () => {
     }
   };
 
-  // TODO: 등록 버튼을 누르지 않고 다른 페이지로 넘어갈 경우 업로드한 이미지 파일 삭제 요청
-  
   useEffect(() => {
     if (id && sacredThings[category]) {
       const { title, description, price, smartStore, mainImage } = getItemById(id);
@@ -64,11 +64,17 @@ const Editor = () => {
     }
   }, [sacredThings]);
 
+  const showLoading = () => (
+    <Loading size="48" />
+  );
+
   const createConfirmModal = message => {
+    setIsLoading(false);
     setConfirmModal({ message });
   };
-
+  
   const createYesNoModal = message => {
+    setIsLoading(false);
     setYesNoModal({ message });
   }
 
@@ -99,7 +105,8 @@ const Editor = () => {
   };
   
   const handlePostButton = async () => {
-    // TODO: indicator
+    setIsLoading(true);
+
     if (!validate()) return;
     const file = inputFile.current.files[0];
     if (!file) return createConfirmModal('대표 이미지를 선택해야 합니다.');
@@ -135,6 +142,8 @@ const Editor = () => {
   };
 
   const handleEditButton = async () => {
+    setIsLoading(true);
+
     if (!validate()) return;
     
     // 이미지 파일을 바꿨다면 기존의 이름과 동일하게 해서 S3에 덮어 씌운다.
@@ -204,6 +213,7 @@ const Editor = () => {
 
       {confirmModal && showConfirmModal()}
       {yesNoModal && showYesNoModal()}
+      {isLoading && showLoading()}
     </>
   );
 }
