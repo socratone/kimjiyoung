@@ -6,6 +6,7 @@ import putItemImages from '../../api/putItemImages';
 import getSacredThings from '../../api/getSacredThings';
 import Button from '../common/Button';
 import ConfirmModal from '../common/ConfirmModal';
+import PlusIcon from '../icon/PlusIcon';
 import styles from './BlankItem.module.scss';
 import { useDispatch } from 'react-redux';
 
@@ -93,7 +94,7 @@ const BlankItem = ({ subImages }) => {
             onClick={() => handleAddButton()}
             style={{ backgroundImage: `url('${imageURI}')` }}
           >
-            {!isAddClick && <i className="fa fa-plus" aria-hidden="true"></i>}
+            {!isAddClick && <PlusIcon size="32" />}
             {isAddClick && <div className={styles.wrap}>
               <div className={styles.imageInputWrap}>
                 <input 

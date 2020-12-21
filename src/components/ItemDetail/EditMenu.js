@@ -6,6 +6,7 @@ import putItemImages from '../../api/putItemImages';
 import getSacredThings from '../../api/getSacredThings';
 import { deleteImageFile } from '../../api/imageFile';
 import YesNoModal from '../common/YesNoModal';
+import TrashIcon from '../icon/TrashIcon';
 import styles from './EditMenu.module.scss';
 
 const EditMenu = ({ name }) => {
@@ -56,7 +57,7 @@ const EditMenu = ({ name }) => {
     <>
       <div className={styles.wrap}>
         <p className={styles.icon} onClick={() => handleTrashButtonClick()}>
-          <i className="fa fa-trash-o" aria-hidden="true"></i>
+          <TrashIcon size={20} />
         </p>
       </div> 
       {modal === 'remove' && showRemoveModal()}

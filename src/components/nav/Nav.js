@@ -21,7 +21,7 @@ const Nav = () => {
         <Link to="/">Kim ji young</Link>
       </div>
       <button className={styles.bars} onClick={barsClick}>
-        <MenuIcon size={14} />
+        <MenuIcon size={20} />
       </button>
       <ul className={styles.ul}>
         <li className={styles.li}>

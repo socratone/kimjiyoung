@@ -5,6 +5,8 @@ import { removeItem } from '../../store/sacredThings';
 import deleteItem from '../../api/deleteItem';
 import { deleteImageFile } from '../../api/imageFile';
 import YesNoModal from '../common/YesNoModal';
+import PencilIcon from '../icon/PencilIcon';
+import TrashIcon from '../icon/TrashIcon';
 import styles from './EditMenu.module.scss';
 
 const EditMenu = ({ category, id }) => {
@@ -45,10 +47,10 @@ const EditMenu = ({ category, id }) => {
     <>
       <div className={styles.wrap}>
         <p className={styles.icon} onClick={() => handleEditButtonClick()}>
-          <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <PencilIcon size={20} />
         </p>
         <p className={styles.icon} onClick={() => handleTrashButtonClick()}>
-          <i className="fa fa-trash-o" aria-hidden="true"></i>
+          <TrashIcon size={20} />
         </p>
       </div> 
 

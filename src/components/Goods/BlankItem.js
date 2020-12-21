@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import PlusIcon from '../icon/PlusIcon';
 import styles from './BlankItem.module.scss';
 
 const BlankItem = () => {
@@ -17,7 +18,7 @@ const BlankItem = () => {
     <article className={styles.item}>
       <div className={styles.imageWrap}>
         <div className={styles.image} onClick={() => handleClick()}>
-          <i className="fa fa-plus" aria-hidden="true"></i>
+          <PlusIcon size="32" />
         </div>
       </div>
     </article> 
