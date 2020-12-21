@@ -48,20 +48,24 @@ const ItemDetail = () => {
   };
   
   return ( 
-    <section className={styles.item}>
-      {mainImage && <Image isEditMenu={false} url={getImageURL(category + '/' + mainImage)}/>}
-      <article className={styles.text}>
-        <p className={styles.title}>{title}</p>
-        <div className={styles.description} ref={descElement} />
-        <div className={styles.purchaseWrap}>
-          {smartStore && <Button width="96px" onClick={() => goPurchaseSite()}>구매하러가기</Button>}
-          {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
-        </div>
-      </article>
-      {account === 'admin' && <BlankItem subImages={subImages} />}
-      {subImages && subImages.split(',').map((subImage, index) => (
-        <Image url={getImageURL(category + '/' + subImage)} name={subImage} key={index}/>
-      ))}
+    <section>
+      <div className={styles.mainWrap}>
+        {mainImage && <Image isEditMenu={false} url={getImageURL(category + '/' + mainImage)}/>}
+        <article className={styles.text}>
+          <p className={styles.title}>{title}</p>
+          <div className={styles.description} ref={descElement} />
+          <div className={styles.purchaseWrap}>
+            {smartStore && <Button width="96px" onClick={() => goPurchaseSite()}>구매하러가기</Button>}
+            {price && <p className={styles.price}>{price.toLocaleString() + '원'}</p>}
+          </div>
+        </article>
+      </div>
+      <div className={styles.subWrap}>
+        {account === 'admin' && <BlankItem subImages={subImages} />}
+        {subImages && subImages.split(',').map((subImage, index) => (
+          <Image url={getImageURL(category + '/' + subImage)} name={subImage} key={index}/>
+        ))}
+      </div>
     </section>
   );
 }
