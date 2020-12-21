@@ -108,4 +108,38 @@ const putHomeImageFile = async file => {
   );
 };
 
-export { putImageFile, listImageFiles, deleteImageFile, putHomeImageFile };
+const putProfileImageFile = async (file, name) => {  
+  AWS.config.update({
+    region,
+    accessKeyId,
+    secretAccessKey
+  }); 
+  
+  const upload = new AWS.S3.ManagedUpload({
+    params: {
+      Bucket: albumBucketName,
+      Key: `profile/${name}`,
+      Body: file,
+      ACL: "public-read"
+    }
+  });
+  
+  const promise = upload.promise();
+
+  return promise.then((data) => {
+      console.log("Successfully uploaded photo.");
+      return { data };
+    },
+    (err) => {
+      return { error: { message: err.message }};
+    }
+  );
+};
+
+export { 
+  putImageFile, 
+  listImageFiles, 
+  deleteImageFile, 
+  putHomeImageFile,
+  putProfileImageFile
+};
