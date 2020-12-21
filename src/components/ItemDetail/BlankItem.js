@@ -6,6 +6,7 @@ import putItemImages from '../../api/putItemImages';
 import getSacredThings from '../../api/getSacredThings';
 import Button from '../common/Button';
 import ConfirmModal from '../common/ConfirmModal';
+import Loading from '../common/Loading';
 import PlusIcon from '../icon/PlusIcon';
 import styles from './BlankItem.module.scss';
 import { useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ const BlankItem = ({ subImages }) => {
   const { category, id } = useParams();
   const [isAddClick, setIsAddClick] = useState(false);
   const [modal, setModal] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [imageURI, setImageURI] = useState('');
 
   const inputFile = useRef(null);
@@ -24,6 +26,7 @@ const BlankItem = ({ subImages }) => {
   };
 
   const createModal = message => {
+    setIsLoading(false);
     setModal({ message });
   };
 
@@ -32,6 +35,10 @@ const BlankItem = ({ subImages }) => {
       text={modal.message}
       yes={() => setModal(null)} 
     />
+  );
+
+  const showLoading = () => (
+    <Loading size="48" />
   );
 
   const previewImageFile = ({ target }) => {
@@ -45,6 +52,8 @@ const BlankItem = ({ subImages }) => {
   };
 
   const handleUploadButton = async () => {
+    setIsLoading(true);
+
     const file = inputFile.current.files[0];
     if (!file) return createModal('이미지 파일을 선택해야 합니다.');
 
@@ -83,6 +92,7 @@ const BlankItem = ({ subImages }) => {
 
     setIsAddClick(false);
     setImageURI('');
+    setIsLoading(false);
   };
 
   return (  
@@ -105,14 +115,13 @@ const BlankItem = ({ subImages }) => {
                   onChange={e => previewImageFile(e)}
                 />
               </div>
-              <div className={styles.uploadButtonWrap}>
-                <Button width="64px" onClick={() => handleUploadButton()}>업로드</Button>
-              </div> 
+              <Button width="64px" onClick={() => handleUploadButton()}>업로드</Button>
             </div>}
           </div>
         </div>
       </article> 
       {modal && showModal()}
+      {isLoading && showLoading()}
     </>
   );
 }
