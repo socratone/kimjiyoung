@@ -38,8 +38,10 @@ const Home = () => {
   
   const previewImageFile = ({ target }) => {
     if (target.files && target.files[0]) {
+      setIsLoading(true);
       const reader = new FileReader();
       reader.onload = ({ target }) => {
+        setIsLoading(false);
         setImageURI(target.result);
       }
       reader.readAsDataURL(target.files[0]);
