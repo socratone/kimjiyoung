@@ -28,9 +28,6 @@ const Nav = () => {
           <Link to="/profile">Profile</Link>
         </li>
         {!userId && <li className={styles.li}>
-          <Link to="/signup">Signup</Link>
-        </li>}
-        {!userId && <li className={styles.li}>
           <Link to="/signin">Signin</Link>
         </li>}
         {userId && <li className={styles.li}>

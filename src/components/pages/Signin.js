@@ -39,11 +39,19 @@ const Signin = () => {
     dispatch(setUser(user));
     history.goBack();
   };
+
+  const handleSignup = () => {
+    history.push('/signup');
+  };
+
+  const handleChangePassword = () => {
+
+  };
   
   return ( 
     <ul className={styles.wrap}>
       <li>
-        <p className={styles.text}>{info}</p>
+        <p className={styles.infoText}>{info}</p>
       </li>
       <li>
         <TextInput 
@@ -63,8 +71,13 @@ const Signin = () => {
           onChange={({ target }) => setPassword(target.value)} 
         />
       </li>
+      <li className={styles.options}>
+        <p className={styles.option} onClick={() => handleSignup()}>회원가입</p>
+        <p className={styles.option}>&nbsp;|&nbsp;</p>
+        <p className={styles.option} onClick={() => handleChangePassword()}>비밀번호 변경</p>
+      </li>
       <li>
-        <Button width="100px" onClick={() => handleLogin()}>로그인</Button>
+        <Button width="64px" onClick={() => handleLogin()}>로그인</Button>
       </li>
     </ul> 
   );

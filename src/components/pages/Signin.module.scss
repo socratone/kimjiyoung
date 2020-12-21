@@ -9,6 +9,23 @@
   }
 }
 
-.text {
+.infoText {
   font-size: 14px;
 }
+
+.options {
+  width: 218px;
+  display: flex;
+  justify-content: center;
+}
+
+.option {
+  font-size: 14px;
+  cursor: pointer;
+  color: gray;
+
+  &:hover {
+    color: black;
+  }
+}
+

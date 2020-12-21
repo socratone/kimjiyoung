@@ -71,7 +71,7 @@ const Signup = () => {
           />
         </li>
         <li>
-          <Button width="100px" onClick={() => handleSignup()}>회원가입</Button>
+          <Button width="80px" onClick={() => handleSignup()}>회원가입</Button>
         </li>
       </>}
     </ul> 
