@@ -46,6 +46,7 @@ const Profile = () => {
         <div className={styles.mainImageWrap}>
           <img 
             className={styles.mainImage} 
+            alt="first-item"
             src={firstImageURI} 
             onClick={() => setIsFirstLarge(true)}
           />
@@ -64,6 +65,7 @@ const Profile = () => {
         >
           <img 
             className={styles.subImage} 
+            alt="second-item"
             src={secondImageURI}
             onClick={() => setIsSecondLarge(true)}
           />
@@ -75,6 +77,7 @@ const Profile = () => {
         <div className={styles.subImageWrap} >
           <img 
             className={styles.subImage} 
+            alt="third-item"
             src={thirdImageURI} 
             onClick={() => setIsThirdLarge(true)}
           />

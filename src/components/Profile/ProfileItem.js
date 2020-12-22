@@ -35,7 +35,7 @@ const ProfileItem = ({ item }) => {
         {isLarge && <ImageViewer url={`${url}/profile/${item.image}`} onClick={reduceImage} />}
       </div>
       <div className={styles.text}>
-        <p className={styles.title}>{convertTextToJSX(item.text)}</p>
+        <div className={styles.title}>{convertTextToJSX(item.text)}</div>
       </div>
     </article>
   );

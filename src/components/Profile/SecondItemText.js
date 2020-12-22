@@ -60,9 +60,9 @@ const SecondItemText = () => {
 
   return (  
     <div className={styles.subTextWrap}>
-      <p className={styles.subText}>
+      <div className={styles.subText}>
         {convertTextToJSX(profile.secondItem.text)}
-      </p>
+      </div>
       {account === 'admin' && 
         <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>}
     </div>
