@@ -1,36 +1,44 @@
 @import '../../config/layout.scss';
 
 .section {
+  padding-right: 80px;
+}
+
+.mainWrap {
+  margin-bottom: 200px;
+}
+
+.mainImageWrap {
+  position: relative;
+}
+
+.mainImage {
+  display: block;
+  width: 100%;
+}
+
+.subWrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 200px;
+}
+
+.subImageWrap {
+  position: relative;
+}
+
+.subImage {
+  width: 100%;
+  display: block;
+}
+
+.itemWrap {
   display: grid;
   gap: $items-gap;
-  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   margin-bottom: 32px;
 }
 
-.imageWrap {
-  position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
-  width: 100%;
-  padding-bottom: 120%; /* 16:9 비율 */
-  overflow: hidden;
-}
-
-.image {
-  position: absolute;
-  width: 100%; /* 부모에 맞게 꽉 채운다. */
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  cursor: pointer;
-  transition: transform 0.5s;
-
-  &:hover {
-    transform: scale(1.04);
-  }
-}
-
-.text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 14px;
+@media (max-width: 980px) {
+  
 }
