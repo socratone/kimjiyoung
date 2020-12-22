@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { setItems } from '../../store/profile';
+import { useDispatch, useSelector } from 'react-redux';
 import getProfile from '../../api/getProfile';
 import ProfileItem from '../Profile/ProfileItem';
 import ImageEditMenu from '../Profile/ImageEditMenu';
 import FirstItemText from '../Profile/FirstItemText';
-import styles from './Profile.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import SecondItemText from '../Profile/SecondItemText';
 import ThirdItemText from '../Profile/ThirdItemText';
+import ImageViewer from '../common/ImageViewer';
+import styles from './Profile.module.scss';
 
 const url = process.env.REACT_APP_S3_URL;
 
@@ -15,7 +16,10 @@ const Profile = () => {
   const [firstImageURI, setFirstImageURI] = useState('');
   const [secondImageURI, setSecondImageURI] = useState('');
   const [thirdImageURI, setThirdImageURI] = useState('');
-  
+  const [isFirstLarge, setIsFirstLarge] = useState(false);
+  const [isSecondLarge, setIsSecondLarge] = useState(false);
+  const [isThirdLarge, setIsThirdLarge] = useState(false);
+
   const dispatch = useDispatch();
   const profile = useSelector(state => state.entities.profile);
   const account = useSelector(state => state.entities.user.account);
@@ -42,7 +46,10 @@ const Profile = () => {
           <img 
             className={styles.mainImage} 
             src={firstImageURI} 
+            onClick={() => setIsFirstLarge(true)}
           />
+          {isFirstLarge && 
+            <ImageViewer url={firstImageURI} onClick={() => setIsFirstLarge(false)} />}
           {account === 'admin' && 
             <ImageEditMenu fileName="first-item" setImageURI={setFirstImageURI} />}
         </div>
@@ -57,12 +64,21 @@ const Profile = () => {
           <img 
             className={styles.subImage} 
             src={secondImageURI}
+            onClick={() => setIsSecondLarge(true)}
           />
+          {isSecondLarge && 
+            <ImageViewer url={secondImageURI} onClick={() => setIsSecondLarge(false)} />}
           {account === 'admin' && 
             <ImageEditMenu fileName="second-item" setImageURI={setSecondImageURI} />}
         </div>
         <div className={styles.subImageWrap} >
-          <img className={styles.subImage} src={thirdImageURI} />
+          <img 
+            className={styles.subImage} 
+            src={thirdImageURI} 
+            onClick={() => setIsThirdLarge(true)}
+          />
+          {isThirdLarge && 
+            <ImageViewer url={thirdImageURI} onClick={() => setIsThirdLarge(false)} />}
           {account === 'admin' && 
             <ImageEditMenu fileName="third-item" setImageURI={setThirdImageURI} />}
         </div>
