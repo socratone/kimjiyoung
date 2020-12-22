@@ -24,7 +24,11 @@ const FirstItemText = () => {
 
   const handleEditButton = () => {
     setIsEdit(true);
-    setEditedText(profile.firstItem.text)
+    setEditedText(profile.firstItem.text);
+  };
+
+  const handleCancelButton = () => {
+    setIsEdit(false);
   };
 
   if (isEdit) {
@@ -44,6 +48,7 @@ const FirstItemText = () => {
         >
           저장
         </p>
+        <p className={styles.textButton} onClick={() => handleCancelButton()}>취소</p>
       </div>
     )
   }

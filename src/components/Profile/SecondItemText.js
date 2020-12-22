@@ -29,6 +29,10 @@ const SecondItemText = () => {
     setEditedText(profile.secondItem.text)
   };
 
+  const handleCancelButton = () => {
+    setIsEdit(false);
+  };
+
   if (isEdit) {
     return (
       <div className={styles.subTextEditWrap}>
@@ -39,12 +43,16 @@ const SecondItemText = () => {
             onChange={(e) => setEditedText(e.target.value)}
           />
         </div>
-        <p 
-          className={styles.textButton} 
-          onClick={() => handleSaveButton()}
-        >
-          저장
-        </p>
+        <div className={styles.buttonWrap}>
+          <p 
+            className={styles.textButton} 
+            onClick={() => handleSaveButton()}
+            style={{ marginRight: '8px' }}
+          >
+            저장
+          </p>
+          <p className={styles.textButton} onClick={() => handleCancelButton()}>취소</p>
+        </div>
       </div>
     );
   }

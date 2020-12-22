@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 0 0 0 8px;
 }
 
 .textareaWrap {
@@ -36,6 +36,11 @@
 .subText {
   font-size: 14px;
   word-break: break-all;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
 }
 
 .textButton {
