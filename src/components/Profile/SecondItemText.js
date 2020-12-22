@@ -24,7 +24,7 @@ const SecondItemText = () => {
 
   if (isEdit) {
     return (
-      <div className={styles.mainTextEditWrap}>
+      <div className={styles.subTextEditWrap}>
         <div className={styles.textareaWrap}>
           <textarea 
             className={styles.textarea} 
