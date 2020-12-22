@@ -30,9 +30,16 @@ const slice = createSlice({
     setThirdItemText: (profile, action) => {
       profile.thirdItem.text = action.payload.text;
     },
-    removeItem: (sacredThings, action) => {
-
-    }
+    setItem: (profile, action) => {
+      const { id, text } = action.payload;
+      const [item] = profile.items.filter(item => item.id === id);
+      if (item) item.text = text;
+    },
+    removeItem: (profile, action) => {
+      const { id } = action.payload;
+      const items = profile.items.filter(item => item.id !== id);
+      profile.items = items;
+    },
   }
 });
 
@@ -41,6 +48,7 @@ export const {
   setFirstItemText,
   setSecondItemText,
   setThirdItemText,
-  removeItem 
+  setItem,
+  removeItem
 } = slice.actions;
 export default slice.reducer;

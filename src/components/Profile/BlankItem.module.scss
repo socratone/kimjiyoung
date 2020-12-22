@@ -1,0 +1,27 @@
+.item {
+  margin-bottom: 24px;
+}
+
+.imageWrap {
+  position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
+  width: 100%;
+  padding-bottom: 100%; /* 가로 세로 비율 */
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  width: 100%; /* 부모에 맞게 꽉 채운다. */
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border: dashed black 1px;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: rgb(250, 250, 250);
+  }
+}

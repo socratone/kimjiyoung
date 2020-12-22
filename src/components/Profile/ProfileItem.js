@@ -34,7 +34,7 @@ const ProfileItem = ({ item }) => {
         {isLarge && <ImageViewer url={`${url}/profile/${item.image}`} onClick={reduceImage} />}
       </div>
       <div className={styles.text}>
-        <p className={styles.title}>{item.word}</p>
+        <p className={styles.title}>{item.text}</p>
       </div>
     </article>
   );

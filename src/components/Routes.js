@@ -9,6 +9,7 @@ import { setUser } from '../store/user';
 import Nav from './nav/Nav';
 import BarsNav from './nav/BarsNav';
 import LeftNav from './nav/LeftNav';
+import ProfileEditor from './pages/ProfileEditor';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Signin from './pages/Signin';
@@ -50,6 +51,9 @@ const Routes = () => {
           <div className={styles.mainBumper} />
           <main className={styles.main}>
             <Switch>
+              <Route path="/profile/editor">
+                <ProfileEditor />
+              </Route>
               <Route path="/profile">
                 <Profile />
               </Route>

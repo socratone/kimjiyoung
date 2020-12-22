@@ -1,0 +1,39 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+}
+
+.li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.textInput {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.description {
+  height: 160px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.mainImageInputWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mainImageInput {
+  padding: 8px 0;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
+}

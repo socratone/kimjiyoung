@@ -8,6 +8,7 @@ import FirstItemText from '../Profile/FirstItemText';
 import SecondItemText from '../Profile/SecondItemText';
 import ThirdItemText from '../Profile/ThirdItemText';
 import ImageViewer from '../common/ImageViewer';
+import BlankItem from '../Profile/BlankItem';
 import styles from './Profile.module.scss';
 
 const url = process.env.REACT_APP_S3_URL;
@@ -85,6 +86,7 @@ const Profile = () => {
         <ThirdItemText />
       </div>
       <div className={styles.itemWrap}>
+        {account === 'admin' && <BlankItem />}
         {profile.items.map(item => <ProfileItem key={item.id} item={item} />)}
       </div>
     </section> 

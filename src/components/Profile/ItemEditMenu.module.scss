@@ -1,0 +1,26 @@
+.wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border: dashed black 1px;
+  background-color: rgba(255, 255, 255, 0.479);
+  
+  &:hover {
+    background-color: rgb(250, 250, 250);
+  }
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 24px;
+  margin: 10px 16px;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
