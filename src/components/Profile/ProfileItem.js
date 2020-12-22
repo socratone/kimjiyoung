@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { activateNav, disableNav } from '../../store/isNav';
+import convertTextToJSX from '../../helper/convertTextToJSX';
 import ImageViewer from '../common/ImageViewer';
 import ItemEditMenu from './ItemEditMenu';
 import styles from './ProfileItem.module.scss';
@@ -34,7 +35,7 @@ const ProfileItem = ({ item }) => {
         {isLarge && <ImageViewer url={`${url}/profile/${item.image}`} onClick={reduceImage} />}
       </div>
       <div className={styles.text}>
-        <p className={styles.title}>{item.text}</p>
+        <p className={styles.title}>{convertTextToJSX(item.text)}</p>
       </div>
     </article>
   );
