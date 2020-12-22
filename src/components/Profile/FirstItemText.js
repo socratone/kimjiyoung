@@ -22,6 +22,11 @@ const FirstItemText = () => {
     setIsEdit(false);
   };
 
+  const handleEditButton = () => {
+    setIsEdit(true);
+    setEditedText(profile.firstItem.text)
+  };
+
   if (isEdit) {
     return (
       <div className={styles.mainTextEditWrap}>
@@ -46,7 +51,7 @@ const FirstItemText = () => {
   return (  
     <div className={styles.mainTextWrap}>
       <p className={styles.mainText}>{profile.firstItem.text}</p>
-      <p className={styles.textButton} onClick={() => setIsEdit(true)}>수정</p>
+      <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>
     </div>
   );
 }

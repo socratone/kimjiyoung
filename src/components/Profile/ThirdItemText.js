@@ -24,6 +24,11 @@ const ThirdItemText = () => {
     setIsEdit(false);
   };
 
+  const handleEditButton = () => {
+    setIsEdit(true);
+    setEditedText(profile.thirdItem.text)
+  };
+
   if (isEdit) {
     return (
       <div className={styles.subTextEditWrap}>
@@ -49,7 +54,7 @@ const ThirdItemText = () => {
       <p className={styles.subText}>
         {convertTextToJSX(profile.thirdItem.text)}  
       </p>
-      <p className={styles.textButton} onClick={() => setIsEdit(true)}>수정</p>
+      <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>
     </div>
   );
 }
