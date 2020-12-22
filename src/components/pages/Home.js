@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { putHomeImageFile } from '../../api/imageFile';
-import Button from '../common/Button';
 import ConfirmModal from '../common/ConfirmModal';
 import Loading from '../common/Loading';
+import ImageIcon from '../icon/ImageIcon';
+import UploadIcon from '../icon/UploadIcon';
 import styles from './Home.module.scss';
 
 const url = process.env.REACT_APP_S3_URL;
 
 const Home = () => {
   const account = useSelector(state => state.entities.user.account);
+  const [imageFile, setImageFile] = useState(null);
   const [imageURI, setImageURI] = useState('');
   const [modal, setModal] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +50,7 @@ const Home = () => {
     }
   };
 
-  const handleUpload = async () => {
+  const uploadImageFile = async () => {
     setIsLoading(true);
 
     const file = inputFile.current.files[0];
@@ -60,6 +62,7 @@ const Home = () => {
 
     setImageURI(url + '/home/background.png');
     createModal('이미지 파일 업로드를 성공했습니다.');
+    setImageFile(null);
   };
 
   return ( 
@@ -70,19 +73,23 @@ const Home = () => {
       />
       <section className={styles.section}>
         {account === 'admin' && <div className={styles.inputWrap}>
+          {!imageFile && <p className={styles.icon} onClick={() => inputFile.current.click()}>
+            <ImageIcon size={20} />
+          </p>}
           <input 
             ref={inputFile} 
+            style={{ display: 'none' }}
             className={styles.imageInput} 
             type="file" 
             accept="image/png, image/jpeg"
-            onChange={e => previewImageFile(e)}
+            onChange={e => {
+              setImageFile(e.target.files[0]);
+              previewImageFile(e);
+            }}
           />
-          <Button 
-            width="64px"
-            onClick={() => handleUpload()}
-          >
-            업로드
-          </Button>
+          {imageFile && <p className={styles.icon} onClick={() => uploadImageFile()}>
+            <UploadIcon size={20} />
+          </p>}
         </div>}
       </section>
       {modal && showModal()}
