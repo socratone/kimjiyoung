@@ -1,4 +1,4 @@
-const url = process.env.REACT_APP_API_URL;
+const url = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 const headers = new Headers();
 headers.append("Content-Type", "application/json");

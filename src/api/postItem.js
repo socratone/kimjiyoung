@@ -1,4 +1,4 @@
-const url = process.env.REACT_APP_API_URL;
+const url = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 const postItem = async ({ title, description, price, category, storeLink, imageFileName }) => {
   const headers = new Headers();
