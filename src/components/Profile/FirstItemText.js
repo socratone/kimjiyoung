@@ -10,6 +10,7 @@ const FirstItemText = () => {
 
   const dispatch = useDispatch();
   const profile = useSelector(state => state.entities.profile);
+  const account = useSelector(state => state.entities.user.account);
 
   const handleSaveButton = async () => {
     const result = await putProfileItem({ 
@@ -56,7 +57,8 @@ const FirstItemText = () => {
   return (  
     <div className={styles.mainTextWrap}>
       <p className={styles.mainText}>{profile.firstItem.text}</p>
-      <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>
+      {account === 'admin' && 
+        <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>}
     </div>
   );
 }

@@ -11,6 +11,7 @@ const SecondItemText = () => {
 
   const dispatch = useDispatch();
   const profile = useSelector(state => state.entities.profile);
+  const account = useSelector(state => state.entities.user.account);
 
   const handleSaveButton = async () => {
     const text = editedText.replace(/\n/g, '\n');
@@ -62,7 +63,8 @@ const SecondItemText = () => {
       <p className={styles.subText}>
         {convertTextToJSX(profile.secondItem.text)}
       </p>
-      <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>
+      {account === 'admin' && 
+        <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>}
     </div>
   );
 }
