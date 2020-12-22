@@ -4,10 +4,11 @@ import { setItems } from '../../store/sacredThings';
 import { putImageFile, listImageFiles } from '../../api/imageFile';
 import putItemImages from '../../api/putItemImages';
 import getSacredThings from '../../api/getSacredThings';
-import Button from '../common/Button';
 import ConfirmModal from '../common/ConfirmModal';
 import Loading from '../common/Loading';
 import PlusIcon from '../icon/PlusIcon';
+import ImageIcon from '../icon/ImageIcon';
+import UploadIcon from '../icon/UploadIcon';
 import styles from './BlankItem.module.scss';
 import { useDispatch } from 'react-redux';
 
@@ -53,7 +54,7 @@ const BlankItem = ({ subImages }) => {
     }
   };
 
-  const handleUploadButton = async () => {
+  const uploadImageFile = async () => {
     setIsLoading(true);
 
     const file = inputFile.current.files[0];
@@ -109,15 +110,23 @@ const BlankItem = ({ subImages }) => {
             {!isAddClick && <PlusIcon size="32" />}
             {isAddClick && <div className={styles.wrap}>
               <div className={styles.imageInputWrap}>
+                <p className={styles.icon} onClick={() => inputFile.current.click()}>
+                  <ImageIcon size={20} />
+                </p>
                 <input 
                   ref={inputFile} 
+                  style={{ display: 'none' }}
                   className={styles.imageInput} 
                   type="file" 
                   accept="image/png, image/jpeg"
-                  onChange={e => previewImageFile(e)}
+                  onChange={e => {
+                    previewImageFile(e);
+                  }}
                 />
               </div>
-              <Button width="64px" onClick={() => handleUploadButton()}>업로드</Button>
+              <p className={styles.icon} onClick={() => uploadImageFile()}>
+                <UploadIcon size={20} />
+              </p>
             </div>}
           </div>
         </div>
