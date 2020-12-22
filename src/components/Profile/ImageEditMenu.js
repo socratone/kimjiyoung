@@ -1,6 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch, } from 'react-redux';
-import { setFirstItemImage, setSecondItemImage, setThirdItemImage } from '../../store/profile';
 import { putProfileImageFile } from '../../api/imageFile';
 import ConfirmModal from '../common/ConfirmModal';
 import Loading from '../common/Loading';
@@ -8,12 +6,11 @@ import UploadIcon from '../icon/UploadIcon';
 import ImageIcon from '../icon/ImageIcon';
 import styles from './ImageEditMenu.module.scss';
 
-const ImageEditMenu = ({ fileName }) => {
+const ImageEditMenu = ({ fileName, setImageURI }) => {
   const [imageFile, setImageFile] = useState(null);
   const [isLoading, setIsLoading] = useState('');
   const [modal, setModal] = useState('');
   const inputFile = useRef(null);
-  const dispatch = useDispatch();
 
   const createModal = message => {
     setIsLoading(false);
@@ -37,14 +34,7 @@ const ImageEditMenu = ({ fileName }) => {
       const reader = new FileReader();
       reader.onload = ({ target }) => {
         setIsLoading(false);
-        if (fileName === 'first-item') {
-          console.log('target.result:', target.result)
-          dispatch(setFirstItemImage({ image: target.result }));
-        } else if (fileName === 'second-item') {
-          dispatch(setSecondItemImage({ image: target.result }));
-        } else if (fileName === 'third-item') {
-          dispatch(setThirdItemImage({ image: target.result }));
-        }
+        setImageURI(target.result)
       }
       reader.readAsDataURL(target.files[0]);
     }
