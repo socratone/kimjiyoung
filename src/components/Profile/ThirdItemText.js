@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setThirdItemText } from '../../store/profile';
 import putProfileItem from '../../api/putProfileItem';
+import convertTextToJSX from '../../helper/convertTextToJSX';
 import styles from './ThirdItemText.module.scss';
 
 const ThirdItemText = () => {
@@ -12,13 +13,14 @@ const ThirdItemText = () => {
   const profile = useSelector(state => state.entities.profile);
 
   const handleSaveButton = async () => {
+    const text = editedText.replace(/\n/g, '\n');
     const result = await putProfileItem({ 
       image: 'third-item.png', 
-      text: editedText
+      text
     });
     if (result.error) alert(result.error.message);
 
-    dispatch(setThirdItemText({ text: editedText }));
+    dispatch(setThirdItemText({ text }));
     setIsEdit(false);
   };
 
@@ -44,7 +46,9 @@ const ThirdItemText = () => {
 
   return (  
     <div className={styles.subTextWrap}>
-      <p className={styles.subText}>{profile.thirdItem.text}</p>
+      <p className={styles.subText}>
+        {convertTextToJSX(profile.thirdItem.text)}  
+      </p>
       <p className={styles.textButton} onClick={() => setIsEdit(true)}>수정</p>
     </div>
   );
