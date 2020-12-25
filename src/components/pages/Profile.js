@@ -59,7 +59,7 @@ const Profile = () => {
       </article>
       <div className={styles.subWrap}>
         <SecondItemText />
-        <div
+        <li
           className={styles.subImageWrap} 
           style={{ marginBottom: '80px' }}
         >
@@ -73,8 +73,8 @@ const Profile = () => {
             <ImageViewer url={secondImageURI} onClick={() => setIsSecondLarge(false)} />}
           {account === 'admin' && 
             <ImageEditMenu fileName="second-item" setImageURI={setSecondImageURI} />}
-        </div>
-        <div className={styles.subImageWrap} >
+        </li>
+        <li className={styles.subImageWrap} >
           <img 
             className={styles.subImage} 
             alt="third-item"
@@ -85,7 +85,7 @@ const Profile = () => {
             <ImageViewer url={thirdImageURI} onClick={() => setIsThirdLarge(false)} />}
           {account === 'admin' && 
             <ImageEditMenu fileName="third-item" setImageURI={setThirdImageURI} />}
-        </div>
+        </li>
         <ThirdItemText />
       </div>
       <div className={styles.itemWrap}>

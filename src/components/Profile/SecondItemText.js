@@ -36,7 +36,7 @@ const SecondItemText = () => {
 
   if (isEdit) {
     return (
-      <div className={styles.subTextEditWrap}>
+      <li className={styles.subTextEditWrap}>
         <div className={styles.textareaWrap}>
           <textarea 
             className={styles.textarea} 
@@ -54,18 +54,18 @@ const SecondItemText = () => {
           </p>
           <p className={styles.textButton} onClick={() => handleCancelButton()}>취소</p>
         </div>
-      </div>
+      </li>
     );
   }
 
   return (  
-    <div className={styles.subTextWrap}>
+    <li className={styles.subTextWrap}>
       <div className={styles.subText}>
         {convertTextToJSX(profile.secondItem.text)}
       </div>
       {account === 'admin' && 
         <p className={styles.textButton} onClick={() => handleEditButton()}>수정</p>}
-    </div>
+    </li>
   );
 }
  
