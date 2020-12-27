@@ -11,5 +11,4 @@ const KakaoIcon = ({ size }) => (
   </svg>
 );
 
- 
 export default KakaoIcon;
